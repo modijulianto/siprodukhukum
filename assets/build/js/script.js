@@ -1,282 +1,285 @@
 $(function () {
+	// AJAX OWNER
+	$(".tombolTambahOperator").on("click", function () {
+		$("#judulModal").html("Input Data Operator");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_operator");
+		// alert($('.modal-body form').attr('action'));
 
-    // AJAX OWNER
-    $('.tombolTambahOwner').on('click', function () {
+		// show form input
+		$("#labelPasswordOperator").show();
+		$("#passwordOperator").show();
+		$("#labelEmailOperator").show();
+		$("#emailOperator").show();
 
-        $('#judulModal').html('Input Data Owner');
-        $('.modal-footer button[type=submit]').html('Add Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Owner/data_owner');
-        // alert($('.modal-body form').attr('action'));
+		$("#id").val("");
+		$("#nama").val("");
+		$("#emailOperator").val("");
+		$("#passwordOperator").val("");
+	});
+	// END AJAX OWNER
 
-        // show form input
-        $('#labelPasswordOwner').show();
-        $('#passwordOwner').show();
-        $('#labelEmailOwner').show();
-        $('#emailOwner').show();
+	// AJAX PEGAWAI
+	$(".tombolTambahPegawai").on("click", function () {
+		$("#judulModal").html("Input Data Pegawai");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Owner/data_pegawai"
+		);
 
-        $('#id').val('');
-        $('#nama').val('');
-        $('#emailOwner').val('');
-        $('#passwordOwner').val('');
-    });
-    // END AJAX OWNER
+		// show form input
+		$("#labelPasswordPegawai").show();
+		$("#passwordPegawai").show();
+		$("#labelEmailPegawai").show();
+		$("#emailPegawai").show();
 
-    // AJAX PEGAWAI
-    $('.tombolTambahPegawai').on('click', function () {
+		$("#id").val("");
+		$("#nama").val("");
+		$("#emailPegawai").val("");
+		$("#passwordPegawai").val("");
+	});
+	// END AJAX PEGAWAI
 
-        $('#judulModal').html('Input Data Pegawai');
-        $('.modal-footer button[type=submit]').html('Add Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Owner/data_pegawai');
+	// AJAX MAKANAN
+	$(".tombolTambahMakanan").on("click", function () {
+		$("#judulModal").html("Input Data Makanan");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Admin/save_makanan"
+		);
 
-        // show form input
-        $('#labelPasswordPegawai').show();
-        $('#passwordPegawai').show();
-        $('#labelEmailPegawai').show();
-        $('#emailPegawai').show();
+		$("#id").val("");
+		$("#nama").val("");
+		$("#id_kat_menu").val(1);
+		$("#harga").val("");
+		$("#deskripsi").val("");
+	});
+	// END AJAX MAKANAN
 
-        $('#id').val('');
-        $('#nama').val('');
-        $('#emailPegawai').val('');
-        $('#passwordPegawai').val('');
+	// AJAX MINUMAN
+	$(".tombolTambahMinuman").on("click", function () {
+		$("#judulModal").html("Input Data");
+		$(".modal-footer button[type=submit]").html("Tambah Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Admin/save_minuman"
+		);
 
-    });
-    // END AJAX PEGAWAI
+		$("#id").val("");
+		$("#nama").val("");
+		$("#harga").val("");
+		$("#deskripsi").val("");
+	});
+	// END AJAX MINUMAN
 
-    // AJAX MAKANAN
-    $('.tombolTambahMakanan').on('click', function () {
-        $('#judulModal').html('Input Data Makanan');
-        $('.modal-footer button[type=submit]').html('Add Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Admin/save_makanan');
+	// AJAX PELANGGAN
+	$(".tombolTambahPelanggan").on("click", function () {
+		$("#judulModal").html("Input Data Pelanggan");
+		$(".modal-footer button[type=submit]").html("Add Data");
 
-        $('#id').val('');
-        $('#nama').val('');
-        $('#id_kat_menu').val(1);
-        $('#harga').val('');
-        $('#deskripsi').val('');
-    });
-    // END AJAX MAKANAN
+		// show form input
+		$("#labelPasswordPelanggan").show();
+		$("#passwordPelanggan").show();
+		$("#labelEmailPelanggan").show();
+		$("#emailPelanggan").show();
 
+		$("#id_pelanggan").val("");
+		$("#id_akun").val("");
+		$("#nama").val("");
+		$("#alamat").val("");
+		$("#telepon").val("");
+		$("#old_image").val("");
+		$("#email").val("");
+		$("#password").val("");
+	});
+	// END AJAX PELANGGAN
 
-    // AJAX MINUMAN
-    $('.tombolTambahMinuman').on('click', function () {
-        $('#judulModal').html('Input Data');
-        $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Admin/save_minuman');
+	// AJAX MENU
+	$(".tombolTambahMenu").on("click", function () {
+		$("#judulModal").html("Input Data");
+		$(".modal-footer button[type=submit]").html("Tambah Data");
 
-        $('#id').val('');
-        $('#nama').val('');
-        $('#harga').val('');
-        $('#deskripsi').val('');
-    });
-    // END AJAX MINUMAN
+		$("#id").val("");
+		$("#menu").val("");
+	});
 
+	$(".modalUbahMenu").on("click", function () {
+		$("#judulModal").html("Update Data");
+		$(".modal-footer button[type=submit]").html("Ubah Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Menu/saveUpdate_menu"
+		);
 
+		const id = $(this).data("id");
 
-    // AJAX PELANGGAN
-    $('.tombolTambahPelanggan').on('click', function () {
+		$.ajax({
+			url: "http://localhost/akamana-coffee/Menu/update_menu",
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#id").val(data.id);
+				$("#menu").val(data.menu);
+			},
+		});
+	});
+	// END AJAX MENU
 
-        $('#judulModal').html('Input Data Pelanggan');
-        $('.modal-footer button[type=submit]').html('Add Data');
+	// AJAX SUB MENU
+	$(".tombolTambahSubMenu").on("click", function () {
+		$("#judulModal").html("Input Data");
+		$(".modal-footer button[type=submit]").html("Tambah Data");
 
-        // show form input
-        $('#labelPasswordPelanggan').show();
-        $('#passwordPelanggan').show();
-        $('#labelEmailPelanggan').show();
-        $('#emailPelanggan').show();
+		$("#sub_id").val("");
+		$("#title").val("");
+		$("#menu_id").val("");
+		$("#url").val("");
+		$("#icon").val("");
+		$("#is_active").val("");
+	});
 
-        $('#id_pelanggan').val('');
-        $('#id_akun').val('');
-        $('#nama').val('');
-        $('#alamat').val('');
-        $('#telepon').val('');
-        $('#old_image').val('');
-        $('#email').val('');
-        $('#password').val('');
-    });
-    // END AJAX PELANGGAN
+	$(".modalUbahSubMenu").on("click", function () {
+		$("#judulModal").html("Update Data");
+		$(".modal-footer button[type=submit]").html("Ubah Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Menu/saveUpdate_subMenu"
+		);
 
-    // AJAX MENU
-    $('.tombolTambahMenu').on('click', function () {
+		const id = $(this).data("id");
 
-        $('#judulModal').html('Input Data');
-        $('.modal-footer button[type=submit]').html('Tambah Data');
+		$.ajax({
+			url: "http://localhost/akamana-coffee/Menu/update_subMenu",
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#id").val(data.sub_id);
+				$("#title").val(data.title);
+				$("#menu_id").val(data.menu_id);
+				$("#url").val(data.url);
+				$("#icon").val(data.icon);
+				$("#is_active").val(data.is_active);
+				if (data.is_active == "1") {
+					document.getElementById("ya").checked = true;
+				} else {
+					document.getElementById("tidak").checked = true;
+				}
+			},
+		});
+	});
+	// END AJAX SUB MENU
 
-        $('#id').val('');
-        $('#menu').val('');
-    });
+	// AJAX ROLE
+	$(".tombolTambahRole").on("click", function () {
+		$("#judulModal").html("Input Data Role");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Owner/role"
+		);
 
-    $('.modalUbahMenu').on('click', function () {
+		$("#id").val("");
+		$("#role").val("");
+	});
+	// END AJAX ROLE
 
-        $('#judulModal').html('Update Data');
-        $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Menu/saveUpdate_menu');
+	// AJAX PENGELUARAN
+	$(".tombolTambahPengeluaran").on("click", function () {
+		$("#judulModal").html("Input Data Pengeluaran");
+		$(".modal-footer button[type=submit]").html("Tambah Data");
 
-        const id = $(this).data('id');
+		$("#id").val("");
+		$("#uraian").val("");
+		$("#nominal").val("");
+		$("#jenis_pengeluaran").val("");
+	});
 
-        $.ajax({
-            url: 'http://localhost/akamana-coffee/Menu/update_menu',
-            data: { id: id },
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                $('#id').val(data.id);
-                $('#menu').val(data.menu);
-            }
-        });
-    });
-    // END AJAX MENU
+	$(".modalUbahPengeluaran").on("click", function () {
+		$("#judulModal").html("Update Data Pengeluaran");
+		$(".modal-footer button[type=submit]").html("Ubah Data");
+		// $('.modal-body input[type=password]').html('readonly');
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Admin/saveUpdate_pengeluaran"
+		);
 
+		const id = $(this).data("id");
 
-    // AJAX SUB MENU
-    $('.tombolTambahSubMenu').on('click', function () {
+		$.ajax({
+			url: "http://localhost/akamana-coffee/Admin/update_pengeluaran",
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#id").val(data.id_pengeluaran);
+				$("#uraian").val(data.uraian);
+				$("#nominal").val(data.nominal);
+				$("#jenis_pengeluaran").val(data.jenis_pengeluaran);
+			},
+		});
+	});
+	// END AJAX PENGELUARAN
 
-        $('#judulModal').html('Input Data');
-        $('.modal-footer button[type=submit]').html('Tambah Data');
+	// AJAX LAPORAN
+	$(".tombolTambahLaporan").on("click", function () {
+		$("#judulModal").html("Input Data Laporan");
+		$(".modal-footer button[type=submit]").html("Tambah Data");
 
-        $('#sub_id').val('');
-        $('#title').val('');
-        $('#menu_id').val('');
-        $('#url').val('');
-        $('#icon').val('');
-        $('#is_active').val('');
-    });
+		$("#id").val("");
+		$("#uraian").val("");
+		$("#nominal").val("");
+		$("#jenis").val("");
+	});
 
-    $('.modalUbahSubMenu').on('click', function () {
+	$(".modalUbahLaporan").on("click", function () {
+		$("#judulModal").html("Update Data Laporan");
+		$(".modal-footer button[type=submit]").html("Ubah Data");
+		// $('.modal-body input[type=password]').html('readonly');
+		$(".modal-body form").attr(
+			"action",
+			"http://localhost/akamana-coffee/Admin/saveUpdate_laporan"
+		);
 
-        $('#judulModal').html('Update Data');
-        $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Menu/saveUpdate_subMenu');
+		const id = $(this).data("id");
 
-        const id = $(this).data('id');
+		$.ajax({
+			url: "http://localhost/akamana-coffee/Admin/update_laporan",
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#id").val(data.id_laporan);
+				$("#uraian").val(data.uraian);
+				$("#nominal").val(data.nominal);
+				$("#jenis").val(data.jenis);
+			},
+		});
+	});
+	// END AJAX LAPORAN
 
-        $.ajax({
-            url: 'http://localhost/akamana-coffee/Menu/update_subMenu',
-            data: { id: id },
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                $('#id').val(data.sub_id);
-                $('#title').val(data.title);
-                $('#menu_id').val(data.menu_id);
-                $('#url').val(data.url);
-                $('#icon').val(data.icon);
-                $('#is_active').val(data.is_active);
-                if (data.is_active == "1") {
-                    document.getElementById("ya").checked = true;
-                } else {
-                    document.getElementById("tidak").checked = true;
-                }
-            }
-        });
-    });
-    // END AJAX SUB MENU
+	// $(document).ready(function () {
+	// $('#id_kat_menu').change(function () {
+	//     var id = $(this).val();
+	//     $.ajax({
+	//         url: 'http://localhost/akamana-coffee/Admin/get_subkategori',
+	//         data: { id: id },
+	//         method: 'POST',
+	//         async: false,
+	//         dataType: 'json',
+	//         success: function (data) {
+	//             var html = '';
+	//             var i;
+	//             for (i = 0; i < data.length; i++) {
+	//                 html += '<option>' + data[i].nama_sub_kat + '</option>';
+	//             }
+	//             $('.id_sub_kat').html(html);
 
-    // AJAX ROLE
-    $('.tombolTambahRole').on('click', function () {
-
-        $('#judulModal').html('Input Data Role');
-        $('.modal-footer button[type=submit]').html('Add Data');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Owner/role');
-
-        $('#id').val('');
-        $('#role').val('');
-    });
-    // END AJAX ROLE
-
-    // AJAX PENGELUARAN
-    $('.tombolTambahPengeluaran').on('click', function () {
-        $('#judulModal').html('Input Data Pengeluaran');
-        $('.modal-footer button[type=submit]').html('Tambah Data');
-
-        $('#id').val('');
-        $('#uraian').val('');
-        $('#nominal').val('');
-        $('#jenis_pengeluaran').val('');
-
-    });
-
-    $('.modalUbahPengeluaran').on('click', function () {
-
-        $('#judulModal').html('Update Data Pengeluaran');
-        $('.modal-footer button[type=submit]').html('Ubah Data');
-        // $('.modal-body input[type=password]').html('readonly');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Admin/saveUpdate_pengeluaran');
-
-        const id = $(this).data('id');
-
-        $.ajax({
-            url: 'http://localhost/akamana-coffee/Admin/update_pengeluaran',
-            data: { id: id },
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                $('#id').val(data.id_pengeluaran);
-                $('#uraian').val(data.uraian);
-                $('#nominal').val(data.nominal);
-                $('#jenis_pengeluaran').val(data.jenis_pengeluaran);
-            }
-        });
-
-    });
-    // END AJAX PENGELUARAN
-
-
-    // AJAX LAPORAN
-    $('.tombolTambahLaporan').on('click', function () {
-        $('#judulModal').html('Input Data Laporan');
-        $('.modal-footer button[type=submit]').html('Tambah Data');
-
-        $('#id').val('');
-        $('#uraian').val('');
-        $('#nominal').val('');
-        $('#jenis').val('');
-
-    });
-
-    $('.modalUbahLaporan').on('click', function () {
-
-        $('#judulModal').html('Update Data Laporan');
-        $('.modal-footer button[type=submit]').html('Ubah Data');
-        // $('.modal-body input[type=password]').html('readonly');
-        $('.modal-body form').attr('action', 'http://localhost/akamana-coffee/Admin/saveUpdate_laporan');
-
-        const id = $(this).data('id');
-
-        $.ajax({
-            url: 'http://localhost/akamana-coffee/Admin/update_laporan',
-            data: { id: id },
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                $('#id').val(data.id_laporan);
-                $('#uraian').val(data.uraian);
-                $('#nominal').val(data.nominal);
-                $('#jenis').val(data.jenis);
-            }
-        });
-
-    });
-    // END AJAX LAPORAN
-
-    // $(document).ready(function () {
-    // $('#id_kat_menu').change(function () {
-    //     var id = $(this).val();
-    //     $.ajax({
-    //         url: 'http://localhost/akamana-coffee/Admin/get_subkategori',
-    //         data: { id: id },
-    //         method: 'POST',
-    //         async: false,
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             var html = '';
-    //             var i;
-    //             for (i = 0; i < data.length; i++) {
-    //                 html += '<option>' + data[i].nama_sub_kat + '</option>';
-    //             }
-    //             $('.id_sub_kat').html(html);
-
-    //         }
-    //     });
-    // });
-    // });
+	//         }
+	//     });
+	// });
+	// });
 });

@@ -4,7 +4,7 @@
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="<?= site_url("User") ?>" class="site_title"><img src="<?= base_url("assets/images/Undiksha.png") ?>" alt="" width="40px"> <span>
-                            <font size="3"><b> SI Produk Hukum</b></font>
+                            <font size="3"><b> SI PRODUK HUKUM</b></font>
                         </span></a>
                 </div>
 
@@ -30,6 +30,7 @@
                     <div class="menu_section">
                         <ul class="nav side-menu">
                             <li><a href="<?= site_url("User") ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a></li>
+                            <li><a href="<?= site_url("Admin/data_operator") ?>"><i class="fa fa-users"></i> DATA OPERATOR </a></li>
                             <li><a href="<?= site_url("User/my_profile") ?>"><i class="fa fa-user"></i> MY PROFILE </a></li>
                             <li><a href="<?= site_url("User/changePassword") ?>"><i class="fa fa-key"></i> CHANGE PASSWORD </a></li>
                         </ul>
@@ -39,16 +40,15 @@
 
                 <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <!-- <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="fa fa-gears" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                         <span class="fa fa-arrows-alt" aria-hidden="true"></span>
+                    </a> -->
+                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Member'); ?>" style="width: 50%;" <span class="fa fa-mail-reply" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Member'); ?>">
-                        <span class="fa fa-mail-reply" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= base_url('Auth/logout') ?>">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= base_url('Auth/logout') ?>" style="width: 50%;">
                         <span class="fa fa-sign-out" aria-hidden="true"></span>
                     </a>
                 </div>
