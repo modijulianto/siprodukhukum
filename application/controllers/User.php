@@ -15,6 +15,7 @@ class User extends CI_Controller
         $data['title'] = "Dasboard";
         $data['meta'] = "Dasboard";
         $data['content'] = "user/dashboard";
+        $data['chart'] = TRUE;
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);
         $this->load->view('templates/admin_footer', $data);

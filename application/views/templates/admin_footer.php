@@ -79,11 +79,13 @@
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script-export.js") ?>"></script>
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/google_chart/loader.js") ?>"></script>
 
-<!-- High Chart -->
-<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/highcharts.js") ?>"></script>
-<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/jquery.highchartTable-min.js") ?>"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script>
+<?php if (isset($chart) == TRUE) { ?>
+    <!-- High Chart -->
+    <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/highcharts.js") ?>"></script>
+    <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/jquery.highchartTable-min.js") ?>"></script>
+    <!-- <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script> -->
+<?php } ?>
 
 <script>
     $('.custom-file-input').on('change', function() {
@@ -91,7 +93,7 @@
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    //UPDATE OWNER
+    //UPDATE OPERATOR
     $('.tombolUbahOperator').on('click', function() {
         $('#judulModal').html('Update Data Operator');
         $('.modal-footer button[type=submit]').html('Update Data');
@@ -121,6 +123,28 @@
                 $('#old_image').val(data.image);
                 $('#old_pass').val(data.password);
                 $('#passwordOperator').val(data.password);
+            }
+        });
+    });
+
+    //UPDATE UNIT
+    $('.tombolUbahUnit').on('click', function() {
+        $('#judulModal').html('Update Data Unit');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_unit') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_unit') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_unit);
+                $('#unit').val(data.nama_unit);
             }
         });
     });

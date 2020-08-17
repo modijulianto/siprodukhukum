@@ -31,6 +31,7 @@
                         <ul class="nav side-menu">
                             <li><a href="<?= site_url("User") ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a></li>
                             <li><a href="<?= site_url("Admin/data_operator") ?>"><i class="fa fa-users"></i> DATA OPERATOR </a></li>
+                            <li><a href="<?= site_url("Admin/data_unit") ?>"><i class="fa fa-institution"></i> DATA UNIT </a></li>
                             <li><a href="<?= site_url("User/my_profile") ?>"><i class="fa fa-user"></i> MY PROFILE </a></li>
                             <li><a href="<?= site_url("User/changePassword") ?>"><i class="fa fa-key"></i> CHANGE PASSWORD </a></li>
                         </ul>
@@ -46,7 +47,8 @@
                     <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                         <span class="fa fa-arrows-alt" aria-hidden="true"></span>
                     </a> -->
-                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Member'); ?>" style="width: 50%;" <span class="fa fa-mail-reply" aria-hidden="true"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Member'); ?>" style="width: 50%;">
+                        <span class="fa fa-mail-reply" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= base_url('Auth/logout') ?>" style="width: 50%;">
                         <span class="fa fa-sign-out" aria-hidden="true"></span>
@@ -95,7 +97,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                Copyright &copy; Gentelella <?= date('Y'); ?>
+                Copyright &copy; Gentelella | Made with <i class="fa fa-heart"></i> <?= date('Y'); ?>
             </div>
             <div class="clearfix"></div>
         </footer>
