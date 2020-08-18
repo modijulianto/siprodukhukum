@@ -88,6 +88,35 @@ class M_admin extends CI_Model
     ///////////////////////////////////// END UNIT /////////////////////////////////////
 
 
+    ///////////////////////////////////// JENIS PRODUK /////////////////////////////////////
+    public function get_jenis()
+    {
+        $this->db->order_by('id_jenis', 'DESC');
+        return $this->db->get('tb_jenis_produk')->result_array();
+    }
+
+    function get_jenis_wh($id)
+    {
+        $this->db->where('id_jenis', $id);
+        $jenis = $this->db->get('tb_jenis_produk')->row_array();
+        return $jenis;
+    }
+
+    public function save_jenis()
+    {
+        $this->db->set('nama_jenis', $_POST['jenis']);
+        $this->db->insert('tb_jenis_produk');
+    }
+
+    public function update_jenis()
+    {
+        $this->db->set('nama_jenis', $_POST['jenis']);
+        $this->db->where('id_jenis', $_POST['id']);
+        $this->db->update('tb_jenis_produk');
+    }
+    ///////////////////////////////////// END JENIS PRODUK /////////////////////////////////////
+
+
     ///////////////////////////////////// DELETE DATA /////////////////////////////////////
     public function delete_data($where, $table)
     {

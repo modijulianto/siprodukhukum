@@ -32,6 +32,12 @@
                             <li><a href="<?= site_url("User") ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a></li>
                             <li><a href="<?= site_url("Admin/data_operator") ?>"><i class="fa fa-users"></i> DATA OPERATOR </a></li>
                             <li><a href="<?= site_url("Admin/data_unit") ?>"><i class="fa fa-institution"></i> DATA UNIT </a></li>
+                            <li><a><i class="fa fa-th-list"></i> JENIS & KATEGORI <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?= site_url("Admin/data_jenisProduk") ?>">Jenis Produk </a></li>
+                                    <li><a href="<?= site_url("Admin/data_kategori") ?>">Kategori Produk </a></li>
+                                </ul>
+                            </li>
                             <li><a href="<?= site_url("User/my_profile") ?>"><i class="fa fa-user"></i> MY PROFILE </a></li>
                             <li><a href="<?= site_url("User/changePassword") ?>"><i class="fa fa-key"></i> CHANGE PASSWORD </a></li>
                         </ul>

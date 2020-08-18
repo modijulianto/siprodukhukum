@@ -83,7 +83,7 @@
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Unit<font color="red">*</font></label>
                         <div class="col-md col-sm">
-                            <input type="text" class="form-control" autofocus name="unit" id="unit" placeholder="Masukkan nama unit" required="required" value="<?= set_value('nama'); ?>" />
+                            <input type="text" class="form-control" name="unit" id="unit" placeholder="Masukkan nama unit" required="required" value="<?= set_value('nama'); ?>" />
                             <td><?php echo form_error('unit'); ?></td>
                         </div>
                     </div>

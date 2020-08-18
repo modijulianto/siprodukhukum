@@ -150,4 +150,60 @@ class Admin extends CI_Controller
         redirect('Admin/data_unit');
     }
     ////////////////////////////////////// END UNIT //////////////////////////////////////
+
+
+    ////////////////////////////////////// JENIS PRODUK //////////////////////////////////////
+    public function data_jenisProduk()
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Jenis Produk";
+        $data['jenis'] = $this->M_admin->get_jenis();
+        $data['content'] = "data_table/data_jenisProduk";
+
+        $jenis = $this->input->post('jenis');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim|is_unique[tb_jenis_produk.nama_jenis]', [
+            'is_unique' => $jenis . ' is already registered!'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            $this->M_admin->save_jenis($_POST);
+            $this->session->set_flashdata('jenis', 'Added');
+            redirect('Admin/data_jenisProduk');
+        }
+    }
+
+    public function update_jenis()
+    {
+        echo json_encode($this->M_admin->get_jenis_wh($_POST['id']));
+    }
+
+    function saveUpdate_jenis()
+    {
+        $result['error'] = TRUE;
+        $jenis = $this->input->post('jenis');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim|is_unique[tb_jenis_produk.nama_jenis]', [
+            'is_unique' => $jenis . ' is already registered!'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->data_jenisProduk();
+        } else {
+            $this->M_admin->update_jenis($_POST);
+            $this->session->set_flashdata('jenis', 'Updated');
+            redirect('Admin/data_jenisProduk');
+        }
+    }
+
+    public function delete_jenis($id)
+    {
+        $where = array('md5(id_jenis)' => $id);
+        $this->M_admin->delete_data($where, 'tb_jenis_produk');
+        $this->session->set_flashdata('jenis', 'Deleted');
+        redirect('Admin/data_jenisProduk');
+    }
+    ////////////////////////////////////// END JENIS PRODUK //////////////////////////////////////
 }

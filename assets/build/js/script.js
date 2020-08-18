@@ -19,7 +19,7 @@ $(function () {
 	});
 	// END AJAX OPERATOR
 
-	// AJAX OPERATOR
+	// AJAX UNIT
 	$(".tombolTambahUnit").on("click", function () {
 		$("#judulModal").html("Input Data Unit");
 		$(".modal-footer button[type=submit]").html("Add Data");
@@ -28,5 +28,16 @@ $(function () {
 		$("#id").val("");
 		$("#unit").val("");
 	});
-	// END AJAX OPERATOR
+	// END AJAX UNIT
+
+	// AJAX JENIS PRODUK
+	$(".tombolTambahJenis").on("click", function () {
+		$("#judulModal").html("Input Data Jenis Produk");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_jenisProduk");
+
+		$("#id").val("");
+		$("#jenis").val("");
+	});
+	// END AJAX JENIS PRODUK
 });
