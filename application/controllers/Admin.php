@@ -294,4 +294,58 @@ class Admin extends CI_Controller
         redirect('Admin/data_jenisProduk');
     }
     ////////////////////////////////////// END JENIS PRODUK //////////////////////////////////////
+
+    ////////////////////////////////////// KATEGORI //////////////////////////////////////
+    public function data_kategori()
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Kategori";
+        $data['kat'] = $this->M_admin->get_kategori();
+        $data['jenis'] = $this->M_admin->get_jenis();
+        $data['content'] = "data_table/data_kategori";
+
+        $kategori = $this->input->post('kategori');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required|trim|is_unique[tb_kategori.nama_kategori]', [
+            'is_unique' => $kategori . ' is already registered!'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            $this->M_admin->save_kategori($_POST);
+            $this->session->set_flashdata('kategori', 'Added');
+            redirect('Admin/data_kategori');
+        }
+    }
+
+    public function update_kategori()
+    {
+        echo json_encode($this->M_admin->get_kategori_wh($_POST['id']));
+    }
+
+    function saveUpdate_kategori()
+    {
+        $result['error'] = TRUE;
+        $kategori = $this->input->post('kategori');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->data_kategori();
+        } else {
+            $this->M_admin->update_kategori($_POST);
+            $this->session->set_flashdata('kategori', 'Updated');
+            redirect('Admin/data_kategori');
+        }
+    }
+
+    public function delete_kategori($id)
+    {
+        $where = array('md5(id_kategori)' => $id);
+        $this->M_admin->delete_data($where, 'tb_kategori');
+        $this->session->set_flashdata('kategori', 'Deleted');
+        redirect('Admin/data_kategori');
+    }
+    ////////////////////////////////////// END KATEGORI //////////////////////////////////////
 }

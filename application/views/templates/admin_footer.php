@@ -203,6 +203,29 @@
             }
         });
     });
+
+    //UPDATE KATEGORI
+    $('.tombolUbahKategori').on('click', function() {
+        $('#judulModal').html('Update Data Kategori');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_kategori') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_kategori') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_kategori);
+                $('#id_jenis').val(data.id_jenis);
+                $('#kategori').val(data.nama_kategori);
+            }
+        });
+    });
 </script>
 </body>
 

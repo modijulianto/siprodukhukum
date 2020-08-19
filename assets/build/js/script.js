@@ -60,4 +60,15 @@ $(function () {
 		$("#jenis").val("");
 	});
 	// END AJAX JENIS PRODUK
+
+	// AJAX KATEGORI
+	$(".tombolTambahKategori").on("click", function () {
+		$("#judulModal").html("Input Data Kategori");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_kategori");
+
+		$("#id").val("");
+		$("#kategori").val("");
+	});
+	// END AJAX KATEGORI
 });

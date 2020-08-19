@@ -167,6 +167,41 @@ class M_admin extends CI_Model
     }
     ///////////////////////////////////// END JENIS PRODUK /////////////////////////////////////
 
+    ///////////////////////////////////// KATEGORI /////////////////////////////////////
+    public function get_kategori()
+    {
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->order_by('id_kategori', 'DESC');
+        return $this->db->get('tb_kategori')->result_array();
+    }
+
+    function get_kategori_wh($id)
+    {
+        $this->db->where('id_kategori', $id);
+        $kategori = $this->db->get('tb_kategori')->row_array();
+        return $kategori;
+    }
+
+    public function save_kategori()
+    {
+        $data = array(
+            'id_jenis' => $_POST['id_jenis'],
+            'nama_kategori' => $_POST['kategori']
+        );
+        $this->db->insert('tb_kategori', $data);
+    }
+
+    public function update_kategori()
+    {
+        $data = array(
+            'id_jenis' => $_POST['id_jenis'],
+            'nama_kategori' => $_POST['kategori']
+        );
+        $this->db->where('id_kategori', $_POST['id']);
+        $this->db->update('tb_kategori', $data);
+    }
+    ///////////////////////////////////// END KATEGORI /////////////////////////////////////
+
 
     ///////////////////////////////////// DELETE DATA /////////////////////////////////////
     public function delete_data($where, $table)
