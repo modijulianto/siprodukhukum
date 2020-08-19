@@ -30,6 +30,7 @@
                     <div class="menu_section">
                         <ul class="nav side-menu">
                             <li><a href="<?= site_url("User") ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a></li>
+                            <li><a href="<?= site_url("Admin/data_admin") ?>"><i class="fa fa-male"></i> DATA ADMIN </a></li>
                             <li><a href="<?= site_url("Admin/data_operator") ?>"><i class="fa fa-users"></i> DATA OPERATOR </a></li>
                             <li><a href="<?= site_url("Admin/data_unit") ?>"><i class="fa fa-institution"></i> DATA UNIT </a></li>
                             <li><a><i class="fa fa-th-list"></i> JENIS & KATEGORI <span class="fa fa-chevron-down"></span></a>

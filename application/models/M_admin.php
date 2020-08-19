@@ -2,6 +2,57 @@
 class M_admin extends CI_Model
 {
 
+    ///////////////////////////////////// ADMINISTRATOR /////////////////////////////////////
+    public function get_admin()
+    {
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_user.id_unit');
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get_where('tb_user', ['role_id' => 1])->result_array();
+    }
+
+    function get_admin_wh($id)
+    {
+        $this->db->where('id=', $id);
+        $admin = $this->db->get('tb_user')->row_array();
+        return $admin;
+    }
+
+    public function save_admin()
+    {
+        $konfigurasi = array(
+            'allowed_types' => 'JPG|jpg|jpeg|png|gif|ico',
+            'upload_path' => realpath('./upload')
+        );
+        $this->load->library('upload', $konfigurasi);
+        $this->upload->do_upload('admin');
+
+        if ($_FILES['admin']['name'] == '') {
+            $data = $this->db->set('image', "default.jpeg");
+        } else {
+            $data = $this->db->set('image', $_FILES['admin']['name']);
+        }
+
+        $data = array(
+            'name' => $_POST['nama'],
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+            'role_id' => 1,
+            'id_unit' => 1,
+            'is_active' => 1,
+            'date_created' => time(),
+        );
+        $this->db->insert('tb_user', $data);
+    }
+
+    public function update_admin()
+    {
+        $this->db->set('name', $_POST['nama']);
+        $this->db->where('id', $_POST['id']);
+        $this->db->update('tb_user');
+    }
+    ///////////////////////////////////// END ADMINISTRATOR /////////////////////////////////////
+
+
     ///////////////////////////////////// OPERATOR /////////////////////////////////////
     public function get_operator()
     {
