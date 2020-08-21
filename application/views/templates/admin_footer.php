@@ -226,6 +226,28 @@
             }
         });
     });
+
+    //UPDATE TENTANG
+    $('.tombolUbahTentang').on('click', function() {
+        $('#judulModal').html('Update Data Tentang');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_tentang') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_tentang') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_tentang);
+                $('#tentang').val(data.nama_tentang);
+            }
+        });
+    });
 </script>
 </body>
 

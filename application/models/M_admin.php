@@ -202,6 +202,38 @@ class M_admin extends CI_Model
     }
     ///////////////////////////////////// END KATEGORI /////////////////////////////////////
 
+    ///////////////////////////////////// TENTANG /////////////////////////////////////
+    public function get_tentang()
+    {
+        $this->db->order_by('id_tentang', 'DESC');
+        return $this->db->get('tb_tentang')->result_array();
+    }
+
+    function get_tentang_wh($id)
+    {
+        $this->db->where('id_tentang', $id);
+        $tentang = $this->db->get('tb_tentang')->row_array();
+        return $tentang;
+    }
+
+    public function save_tentang()
+    {
+        $data = array(
+            'nama_tentang' => $_POST['tentang']
+        );
+        $this->db->insert('tb_tentang', $data);
+    }
+
+    public function update_tentang()
+    {
+        $data = array(
+            'nama_tentang' => $_POST['tentang']
+        );
+        $this->db->where('id_tentang', $_POST['id']);
+        $this->db->update('tb_tentang', $data);
+    }
+    ///////////////////////////////////// END KATEGORI /////////////////////////////////////
+
 
     ///////////////////////////////////// DELETE DATA /////////////////////////////////////
     public function delete_data($where, $table)

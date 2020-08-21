@@ -37,6 +37,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="<?= site_url("Admin/data_jenisProduk") ?>">Jenis Produk </a></li>
                                     <li><a href="<?= site_url("Admin/data_kategori") ?>">Kategori Produk </a></li>
+                                    <li><a href="<?= site_url("Admin/data_tentang") ?>">Tentang </a></li>
                                 </ul>
                             </li>
                             <li><a href="<?= site_url("User/my_profile") ?>"><i class="fa fa-user"></i> MY PROFILE </a></li>

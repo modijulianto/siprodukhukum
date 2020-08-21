@@ -71,4 +71,15 @@ $(function () {
 		$("#kategori").val("");
 	});
 	// END AJAX KATEGORI
+
+	// AJAX TENTANG
+	$(".tombolTambahTentang").on("click", function () {
+		$("#judulModal").html("Input Data Tentang");
+		$(".modal-footer button[type=submit]").html("Add Data");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_tentang");
+
+		$("#id").val("");
+		$("#tentang").val("");
+	});
+	// END AJAX TENTANG
 });

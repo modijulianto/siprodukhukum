@@ -328,7 +328,6 @@ class Admin extends CI_Controller
     function saveUpdate_kategori()
     {
         $result['error'] = TRUE;
-        $kategori = $this->input->post('kategori');
         $this->form_validation->set_rules('kategori', 'Kategori', 'required|trim');
 
         if ($this->form_validation->run() == FALSE) {
@@ -348,4 +347,54 @@ class Admin extends CI_Controller
         redirect('Admin/data_kategori');
     }
     ////////////////////////////////////// END KATEGORI //////////////////////////////////////
+
+
+    ////////////////////////////////////// TENTANG //////////////////////////////////////
+    public function data_tentang()
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Tentang";
+        $data['tentang'] = $this->M_admin->get_tentang();
+        $data['content'] = "data_table/data_tentang";
+
+        $this->form_validation->set_rules('tentang', 'Tentang', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            $this->M_admin->save_tentang($_POST);
+            $this->session->set_flashdata('tentang', 'Added');
+            redirect('Admin/data_tentang');
+        }
+    }
+
+    public function update_tentang()
+    {
+        echo json_encode($this->M_admin->get_tentang_wh($_POST['id']));
+    }
+
+    function saveUpdate_tentang()
+    {
+        $result['error'] = TRUE;
+        $this->form_validation->set_rules('tentang', 'tentang', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->data_tentang();
+        } else {
+            $this->M_admin->update_tentang($_POST);
+            $this->session->set_flashdata('tentang', 'Updated');
+            redirect('Admin/data_tentang');
+        }
+    }
+
+    public function delete_tentang($id)
+    {
+        $where = array('md5(id_tentang)' => $id);
+        $this->M_admin->delete_data($where, 'tb_tentang');
+        $this->session->set_flashdata('tentang', 'Deleted');
+        redirect('Admin/data_tentang');
+    }
+    ////////////////////////////////////// END TENTANG //////////////////////////////////////
 }
