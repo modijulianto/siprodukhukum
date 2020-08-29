@@ -87,6 +87,9 @@
     <script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script> -->
 <?php } ?>
 
+<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/vendors/select2/dist/js/select2.min.js") ?>"></script>
+
+
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -247,6 +250,29 @@
                 $('#tentang').val(data.nama_tentang);
             }
         });
+    });
+
+    $("#tentang").select2({
+        minimumInputLength: 3,
+        allowClear: true,
+        placeholder: 'masukkan tentang',
+        ajax: {
+            url: "<?php echo base_url(); ?>Admin/find_tentang",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    tentang: params.term // search term
+                };
+            },
+            processResults: function(response) {
+                return {
+                    results: response
+                };
+            },
+            cache: true
+        }
     });
 </script>
 </body>

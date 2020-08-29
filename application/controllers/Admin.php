@@ -10,9 +10,24 @@ class Admin extends CI_Controller
         is_logged_in();
     }
 
+    ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
+    public function data_produkHukum()
+    {
+        is_admin();
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_produkHukum();
+        $data['content'] = "data_table/data_produkHukum";
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('templates/template_admin', $data);
+        $this->load->view('templates/admin_footer', $data);
+    }
+    ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
+
     ////////////////////////////////////// ADMINISTRATOR //////////////////////////////////////
     public function data_admin()
     {
+        is_admin();
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Administrator";
         $data['adm'] = $this->M_admin->get_admin();
@@ -41,6 +56,7 @@ class Admin extends CI_Controller
 
     function saveUpdate_admin()
     {
+        is_admin();
         $result['error'] = TRUE;
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', array('required' => '<p style="color: red">Nama owner harus diisi.</p>'));
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -82,17 +98,24 @@ class Admin extends CI_Controller
 
     public function delete_admin($id)
     {
-        $this->db->where('md5(id)', $id);
-        $data['user'] = $this->db->get('tb_user')->row_array();
+        is_admin();
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $foto = $data['user']['image'];
-        if ($foto != 'default.jpeg') {
-            unlink(FCPATH . 'upload/' . $foto);
+        if (md5($data['akun']['id']) != $id) {
+            $this->db->where('md5(id)', $id);
+            $data['user'] = $this->db->get('tb_user')->row_array();
+
+            $foto = $data['user']['image'];
+            if ($foto != 'default.jpeg') {
+                unlink(FCPATH . 'upload/' . $foto);
+            }
+
+            $where = array('md5(id)' => $id);
+            $this->M_admin->delete_data($where, 'tb_user');
+            $this->session->set_flashdata('admin', 'Deleted');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><b>Oops!</b> you can\'t delete your own account!</div>');
         }
-
-        $where = array('md5(id)' => $id);
-        $this->M_admin->delete_data($where, 'tb_user');
-        $this->session->set_flashdata('admin', 'Deleted');
         redirect('Admin/data_admin');
     }
     ////////////////////////////////////// END ADMINISTRATOR //////////////////////////////////////
@@ -101,6 +124,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// OPERATOR //////////////////////////////////////
     public function data_operator()
     {
+        is_admin();
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Operator";
         $data['opr'] = $this->M_admin->get_operator();
@@ -130,6 +154,7 @@ class Admin extends CI_Controller
 
     function saveUpdate_operator()
     {
+        is_admin();
         $result['error'] = TRUE;
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', array('required' => '<p style="color: red">Nama owner harus diisi.</p>'));
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -171,6 +196,7 @@ class Admin extends CI_Controller
 
     public function delete_operator($id)
     {
+        is_admin();
         $this->db->where('md5(id)', $id);
         $data['user'] = $this->db->get('tb_user')->row_array();
 
@@ -190,6 +216,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// UNIT //////////////////////////////////////
     public function data_unit()
     {
+        is_admin();
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Unit";
         $data['unit'] = $this->M_admin->get_unit();
@@ -216,6 +243,7 @@ class Admin extends CI_Controller
 
     function saveUpdate_unit()
     {
+        is_admin();
         $result['error'] = TRUE;
         $this->form_validation->set_rules('unit', 'Unit', 'required|trim|is_unique[tb_unit.nama_unit]', [
             'is_unique' => 'This unit is already registered!'
@@ -232,6 +260,7 @@ class Admin extends CI_Controller
 
     public function delete_unit($id)
     {
+        is_admin();
         $where = array('md5(id_unit)' => $id);
         $this->M_admin->delete_data($where, 'tb_unit');
         $this->session->set_flashdata('unit', 'Deleted');
