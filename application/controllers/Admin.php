@@ -13,7 +13,6 @@ class Admin extends CI_Controller
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
     public function data_produkHukum()
     {
-        is_admin();
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukum();
@@ -21,6 +20,33 @@ class Admin extends CI_Controller
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);
         $this->load->view('templates/admin_footer', $data);
+    }
+    public function input_produkHukum()
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Input Data Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_produkHukum();
+        $data['kat'] = $this->M_admin->get_kategori();
+        $data['content'] = "data_input/input_prohum";
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('templates/template_admin', $data);
+        $this->load->view('templates/admin_footer', $data);
+    }
+
+    public function save_produkHukum()
+    {
+        print_r($_POST);
+        die;
+    }
+
+    public function find_tentang()
+    {
+        $q = $this->input->post("tentang");
+        $sql = "select id_tentang as id,nama_tentang as text from tb_tentang where nama_tentang like '%" . $q . "%' order by id_tentang asc";
+        //die($sql);
+        $data_tindakan = $this->db->query($sql)->result_array();
+
+        echo json_encode($data_tindakan);
     }
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
 

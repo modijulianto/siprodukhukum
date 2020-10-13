@@ -21,10 +21,9 @@
                         <i class="fa fa-download"></i>
                         PDF
                     </a>
-                    <button type="button" id="tombolTambahProdukHukum" class="btn btn-primary tombolTambahProdukHukum" data-toggle="modal" data-target="#modalProdukHukum" style="float: right">
+                    <a href="<?= base_url('Admin/input_produkHukum'); ?>" class="btn btn-primary" style="float: right">
                         <i class="fa fa-plus"></i>
-                        Add Produk Hukum
-                    </button>
+                        Add Produk Hukum</a>
                     <div class="card-box table-responsive">
                         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                             <?= $this->session->flashdata('message'); ?>

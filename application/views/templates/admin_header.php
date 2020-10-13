@@ -43,9 +43,8 @@
     <link href="<?= base_url("assets/build/css/custom.min.css") ?>" rel="stylesheet">
     <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/google_chart/loader.js") ?>"></script>
 
-    <!-- autocomplete -->
-    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/build/js/jquery.autocomplete.js"></script> -->
-
+    <!-- Select2 -->
+    <link href="<?= base_url("assets/vendors/select2/dist/css/select2.min.css") ?>" rel="stylesheet">
 
 
 </head>

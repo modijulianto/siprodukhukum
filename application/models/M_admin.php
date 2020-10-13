@@ -194,8 +194,8 @@ class M_admin extends CI_Model
     public function get_kategori()
     {
         // Menampilkan data kategori dengan id_unit 1 dan kategori yang sesuai dengan unit yang membuatnya 
-        $this->db->where('id_unit', 1);
-        $this->db->or_where('id_unit', $this->session->userdata('id_unit'));
+        $this->db->where('tb_kategori.id_unit', 1);
+        $this->db->or_where('tb_kategori.id_unit', $this->session->userdata('id_unit'));
 
         $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
         $this->db->order_by('id_kategori', 'DESC');

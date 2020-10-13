@@ -51,7 +51,7 @@
                                         <td>
                                             <center>
                                                 <button type="button" name="ubah" data-toggle="modal" data-target="#modalUnit" id="tombolUbahUnit" class="btn btn-success btn-sm tombolUbahUnit" data-id="<?= $val['id_unit']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <a href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>"><button href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
+                                                <button href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
                                             </center>
                                         </td>
                                     </tr>

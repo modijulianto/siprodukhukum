@@ -4,7 +4,7 @@
 			<center><?= $this->session->flashdata('registered'); ?></center>
 			<form action="<?= base_url('Auth'); ?>" method="POST" class="login100-form validate-form flex-sb flex-w">
 				<span class="login100-form-title p-b-32">
-					<center><img src="<?= base_url('assets/images/Undiksha.png'); ?>" width="200px"></center>
+					<center><a href="<?= base_url('Jdih'); ?>"><img src="<?= base_url('assets/images/Undiksha.png'); ?>" width="200px"></a></center>
 					<center class="p-t-10">LOGIN</center>
 				</span>
 
