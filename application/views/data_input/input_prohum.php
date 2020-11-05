@@ -13,7 +13,7 @@
         <div class="x_content">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="<?= site_url('Admin/save_produkHukum') ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= site_url('Admin/input_produkHukum') ?>" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="id" name="id">
                         <div class="row form-group">
                             <label class="col-form-label col-md-2 col-sm-2">Nomor<font color="red">*</font></label>
@@ -22,6 +22,14 @@
                                 <td><?php echo form_error('nomor'); ?></td>
                             </div>
                         </div>
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2 col-sm-2">Tahun<font color="red">*</font></label>
+                            <div class="col-md col-sm">
+                                <input type="number" class="form-control" name="tahun" id="tahun" placeholder="Masukkan tahun produk hukum" required="required" value="<?= set_value('tahun'); ?>" />
+                                <td><?php echo form_error('tahun'); ?></td>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row form-group">
                             <label class="col-form-label col-md-2 col-sm-2">Judul<font color="red">*</font></label>
                             <div class="col-md col-sm">
@@ -33,6 +41,9 @@
                             <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
                             <div class="col-md-8 col-sm-8">
                                 <select class="form-control" name="tentang" id="tentang" required></select>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".modalTentangBaru"><i class="fa fa-plus"></i> Tentang Baru</button>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -52,6 +63,13 @@
                                 <td><?php echo form_error('keterangan'); ?></td>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-2 col-sm-2">Status</label>
+                            <div class="col-md col-sm ">
+                                <input type="radio" class="flat m-b-5" checked name="status" value="Berlaku"> Berlaku <br>
+                                <input type="radio" class="flat" name="status" value="Tidak Berlaku"> Tidak Berlaku
+                            </div>
+                        </div>
                         <div class="row form-group">
                             <label class="col-form-label col-md-2 col-sm-2">File</label>
                             <div class="col-md col-sm">
@@ -63,6 +81,37 @@
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Large Modal Tentang -->
+<div class="modal fade bs-example-modal-lg modalTentangBaru" id="modalTentangBaru" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="judulModal">Input Data</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('Admin/add_tentangBaru'); ?>" id="form-tentangBaru" method="POST" class="form-tentang form-tentangBaru">
+                    <div class="row form-group">
+                        <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
+                        <div class="col-md col-sm">
+                            <!-- <input type="text" class="form-control" name="jenis" id="jenis" placeholder="Masukkan nama jenis" required="required" value="<?= set_value('nama'); ?>" /> -->
+                            <textarea name="tentangBaru" id="tentangBaru" placeholder="Masukkan Tentang" style="width: 100%;" rows="5"></textarea>
+                            <div class="invalid-feedback errorTentang">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btnSimpan" id="btnSimpan">Tambah Data</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -45,6 +45,9 @@
 
     <!-- Select2 -->
     <link href="<?= base_url("assets/vendors/select2/dist/css/select2.min.css") ?>" rel="stylesheet">
+    <!-- <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/jquery-3.5.1.min.js") ?>"></script> -->
+    <!-- jQuery -->
+    <script src="<?= base_url("assets/vendors/jquery/dist/jquery.min.js") ?>"></script>
 
 
 </head>

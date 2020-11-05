@@ -14,6 +14,45 @@ class M_admin extends CI_Model
         $this->db->order_by('id_produk', 'DESC');
         return $this->db->get('tb_produk')->result_array();
     }
+
+    public function addTentangBaru($tentangBaru, $id_unit)
+    {
+        $data = [
+            'nama_tentang' => $tentangBaru,
+            'id_unit' => $id_unit
+        ];
+        $hasil = $this->db->insert('tb_tentang', $data);
+        return $hasil;
+    }
+
+    public function save_prohum()
+    {
+        $konfigurasi = array(
+            'allowed_types' => 'pdf|doc|docx',
+            'upload_path' => realpath('./upload/produk'),
+            'remove_spaces' => true,
+            'mod_mime_fix' => true,
+        );
+        $this->load->library('upload', $konfigurasi);
+        $this->upload->do_upload('produk');
+
+        // $fileName = url_title($_FILES['produk']['name'], '_', false);
+        $fileName = str_replace("", "_", $_FILES['produk']['name']);
+
+        $data = [
+            'no' => $_POST['nomor'],
+            'id_kategori' => $_POST['id_kategori'],
+            'id_tentang' => $_POST['tentang'],
+            'judul' => $_POST['judul'],
+            'tahun' => $_POST['tahun'],
+            'status' => $_POST['status'],
+            'keterangan' => $_POST['keterangan'],
+            'file' => $fileName,
+            'id_unit' => $this->session->userdata('id_unit')
+        ];
+
+        $this->db->insert('tb_produk', $data);
+    }
     ///////////////////////////////////// PRODUK HUKUM /////////////////////////////////////
 
     ///////////////////////////////////// ADMINISTRATOR /////////////////////////////////////

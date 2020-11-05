@@ -17,18 +17,13 @@
                 </div>
 
 
-                <!-- <span class="txt1 p-b-5">
-                    Email
-                </span> -->
                 <div class="wrap-input100 validate-input m-b-30" data-validate="Email is required">
                     <input class="input100" type="text" name="email" id="email" placeholder="Email" value="<?= set_value('email'); ?>">
                     <span class="focus-input100"></span>
                     <?= form_error('email', '<small class="p-l-5 txt1 text-danger">', '</small>'); ?>
                 </div>
 
-                <!-- <span class="txt1 p-b-5">
-                    Password
-                </span> -->
+
                 <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
                     <span class="btn-show-pass">
                         <i class="fa fa-eye"></i>
@@ -38,9 +33,7 @@
                     <?= form_error('password1', '<small class="p-l-5 txt1 text-danger">', '</small>'); ?>
                 </div>
 
-                <!-- <span class="txt1 p-b-5">
-                    Repeat Password
-                </span> -->
+
                 <div class="wrap-input100 validate-input m-b-30" data-validate="Repeat Password is required">
                     <span class="btn-show-pass">
                         <i class="fa fa-eye"></i>

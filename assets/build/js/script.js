@@ -82,4 +82,36 @@ $(function () {
 		$("#tentang").val("");
 	});
 	// END AJAX TENTANG
+
+	$('#btnSimpan').on("click", function () {
+		var tentangBaru = $('#tentangBaru').val();
+		// alert($('#form-tentangBaru').attr('action'));
+
+		$.ajax({
+			type: 'POST',
+			url: $('#form-tentangBaru').attr('action'),
+			dataType: 'JSON',
+			data: {
+				tentangBaru: tentangBaru
+			},
+			beforeSend: function () {
+				$('.btnSimpan').attr('disable', 'disabled');
+				$('.btnSimpan').html('<i class="fa fa-spin fa-spinner"></i>');
+			},
+			complete: function () {
+				$('.btnSimpan').removeAttr('disable');
+				$('.btnSimpan').html('Tambah Data');
+			},
+			success: function (data) {
+				Swal.fire({
+					icon: 'success',
+					title: 'Success!',
+					text: "Data tentang baru berhasil ditambahkan"
+				})
+				$('[name="tentangBaru"]').val("");
+				$('#modalTentangBaru').modal('hide');
+			}
+		});
+		return false;
+	});
 });

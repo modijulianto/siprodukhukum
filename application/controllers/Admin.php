@@ -28,9 +28,23 @@ class Admin extends CI_Controller
         $data['prohum'] = $this->M_admin->get_produkHukum();
         $data['kat'] = $this->M_admin->get_kategori();
         $data['content'] = "data_input/input_prohum";
-        $this->load->view('templates/admin_header', $data);
-        $this->load->view('templates/template_admin', $data);
-        $this->load->view('templates/admin_footer', $data);
+
+        $this->form_validation->set_rules('nomor', 'Nomor', 'required|trim');
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim|numeric');
+        $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
+        $this->form_validation->set_rules('tentang', 'Tentang', 'required|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            $this->M_admin->save_prohum($_POST);
+            $this->session->set_flashdata('prohum', 'Added');
+            redirect('Admin/data_produkHukum');
+        }
     }
 
     public function save_produkHukum()
@@ -47,6 +61,19 @@ class Admin extends CI_Controller
         $data_tindakan = $this->db->query($sql)->result_array();
 
         echo json_encode($data_tindakan);
+    }
+
+    public function add_tentangBaru()
+    {
+        $this->form_validation->set_rules('tentangBaru', 'Tentang baru', 'required|trim');
+        if ($this->form_validation->run() == FALSE) {
+            $this->input_produkHukum();
+        } else {
+            $tentangBaru = $this->input->post('tentangBaru');
+            $id_unit = $this->session->userdata('id_unit');
+            $data = $this->M_admin->addTentangBaru($tentangBaru, $id_unit);
+            echo json_encode($data);
+        }
     }
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
 

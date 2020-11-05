@@ -19,6 +19,8 @@
     <link href="<?= base_url("assets/vendors/nprogress/nprogress.css") ?>" rel="stylesheet">
     <!-- iCheck -->
     <link href="<?= base_url("assets/vendors/iCheck/skins/flat/green.css") ?>" rel="stylesheet">
+
+
 </head>
 
 <body class="bg-light">
@@ -28,31 +30,41 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <div class="text-right">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Login</a>
+            <div class="col-lg-11">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
                     </li>
-                </div>
-            </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Unit
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php foreach ($unit as $unit) { ?>
+                                <a class="dropdown-item" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a>
+                            <?php } ?>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Galeri</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="<?= base_url('Auth'); ?>" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                asdasds
+            </div>
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>

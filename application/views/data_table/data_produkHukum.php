@@ -33,6 +33,7 @@
                             <br><br><br>
                             <thead>
                                 <tr>
+                                    <th class="text-center">#</th>
                                     <th class="text-center">No</th>
                                     <th class="text-center">Judul</th>
                                     <th class="text-center">Tentang</th>
@@ -54,8 +55,8 @@
                                         </td>
                                         <td><?= $val['no']; ?></td>
                                         <td><?= $val['judul']; ?></td>
-                                        <td><?= $val['tentang']; ?></td>
-                                        <td><?= $val['kategori']; ?></td>
+                                        <td><?= $val['nama_tentang']; ?></td>
+                                        <td><?= $val['nama_kategori']; ?></td>
                                         <td><?= $val['tahun']; ?></td>
                                         <td><?= $val['keterangan']; ?></td>
                                         <td><?= $val['status']; ?></td>

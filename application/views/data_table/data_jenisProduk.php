@@ -90,3 +90,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    //UPDATE JENIS
+    $('.tombolUbahJenis').on('click', function() {
+        $('#judulModal').html('Update Data Jenis Produk');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_jenis') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_jenis') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_jenis);
+                $('#jenis').val(data.nama_jenis);
+            }
+        });
+    });
+</script>

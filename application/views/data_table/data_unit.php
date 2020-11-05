@@ -96,3 +96,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    //UPDATE UNIT
+    $('.tombolUbahUnit').on('click', function() {
+        $('#judulModal').html('Update Data Unit');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_unit') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_unit') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_unit);
+                $('#unit').val(data.nama_unit);
+            }
+        });
+    });
+</script>

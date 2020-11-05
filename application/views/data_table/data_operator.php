@@ -136,3 +136,39 @@
         </div>
     </div>
 </div>
+
+<script>
+    //UPDATE OPERATOR
+    $('.tombolUbahOperator').on('click', function() {
+        $('#judulModal').html('Update Data Operator');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_operator') ?>');
+
+
+        // hide form input
+        $('#labelPasswordOperator').hide();
+        $('#passwordOperator').hide();
+        $('#labelEmailOperator').hide();
+        $('#emailOperator').hide();
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_operator') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id);
+                $('#nama').val(data.name);
+                $('#id_unit').val(data.id_unit);
+                $('#emailOperator').val(data.email);
+                $('#old_image').val(data.image);
+                $('#old_pass').val(data.password);
+                $('#passwordOperator').val(data.password);
+            }
+        });
+    });
+</script>

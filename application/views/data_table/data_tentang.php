@@ -75,7 +75,7 @@
                         <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
                         <div class="col-md col-sm">
                             <!-- <input type="text" class="form-control" name="jenis" id="jenis" placeholder="Masukkan nama jenis" required="required" value="<?= set_value('nama'); ?>" /> -->
-                            <textarea name="tentang" id="tentang" placeholder="Masukkan Tentang" style="width: 100%;" rows="5" required></textarea>
+                            <textarea name="tentang" id="inputTentang" placeholder="Masukkan Tentang" style="width: 100%;" rows="5" required></textarea>
                             <td><?php echo form_error('tentang'); ?></td>
                         </div>
                     </div>
@@ -89,3 +89,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    //UPDATE TENTANG
+    $('.tombolUbahTentang').on('click', function() {
+        $('#judulModal').html('Update Data Tentang');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_tentang') ?>');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_tentang') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id_tentang);
+                $('#inputTentang').val(data.nama_tentang);
+            }
+        });
+    });
+</script>

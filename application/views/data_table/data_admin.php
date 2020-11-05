@@ -124,3 +124,38 @@
         </div>
     </div>
 </div>
+
+<script>
+    //UPDATE ADMINISTRATOR
+    $('.tombolUbahAdmin').on('click', function() {
+        $('#judulModal').html('Update Data Administrator');
+        $('.modal-footer button[type=submit]').html('Update Data');
+        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_admin') ?>');
+
+
+        // hide form input
+        $('#labelPasswordAdmin').hide();
+        $('#passwordAdmin').hide();
+        $('#labelEmailAdmin').hide();
+        $('#emailAdmin').hide();
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Admin/update_admin') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id);
+                $('#nama').val(data.name);
+                $('#emailAdmin').val(data.email);
+                $('#old_image').val(data.image);
+                $('#old_pass').val(data.password);
+                $('#passwordAdmin').val(data.password);
+            }
+        });
+    });
+</script>

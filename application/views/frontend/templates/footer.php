@@ -1,3 +1,33 @@
+<div class="col col-lg-12 bg-dark">
+    <footer class="footer mt-auto py-3">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="<?= base_url('assets/images/Logo-Website-Undiksha.png'); ?>" alt=""><br><br>
+                <div class="text-light">
+                    <b>Jaringan Dokumentasi dan Informasi Hukum</b> <br>
+                    Jalan Udayana No.11 Singaraja - Bali 81116 <br>
+                    Telephone (0362) 22570, Fax (0362) 25735, Email : humas@undiksha.ac.id
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-light mb-auto" style="margin-top: 10px;">
+                    <b>&emsp; UNIT</b>
+                    <hr color="white">
+                    <?php foreach ($unit as $unit) { ?>
+                        <ul>
+                            <li style="line-height: 5px;"><a class="text-light" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a><br></li>
+                        </ul>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="<?= base_url("assets") ?>/vendors/validator/multifield.js"></script>
 <script src="<?= base_url("assets") ?>/vendors/validator/validator.js"></script>
