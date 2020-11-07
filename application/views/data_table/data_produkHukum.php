@@ -41,7 +41,6 @@
                                     <th class="text-center">Tahun</th>
                                     <th class="text-center">Keterangan</th>
                                     <th class="text-center">Status</th>
-                                    <th class="text-center">File</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -55,16 +54,15 @@
                                         </td>
                                         <td><?= $val['no']; ?></td>
                                         <td><?= $val['judul']; ?></td>
-                                        <td><?= $val['nama_tentang']; ?></td>
+                                        <td><?= (str_word_count($val['nama_tentang'])) > 10 ? substr($val['nama_tentang'], 0, 100) . " [..]" : $val['nama_tentang']; ?></td>
                                         <td><?= $val['nama_kategori']; ?></td>
                                         <td><?= $val['tahun']; ?></td>
                                         <td><?= $val['keterangan']; ?></td>
                                         <td><?= $val['status']; ?></td>
-                                        <td><?= $val['file']; ?></td>
                                         <td>
                                             <center>
-                                                <button type="button" name="ubah" data-toggle="modal" data-target="#modalProdukHukum" id="tombolUbahProdukHukum" class="btn btn-success btn-sm tombolUbahProdukHukum" data-id="<?= $val['id_produk']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <button href="<?= site_url('Admin/delete_produkHukum/' . md5($val['id_produk'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                <a href="<?= site_url('Admin/update_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                                <a href="<?= site_url('Admin/delete_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                             </center>
                                         </td>
                                     </tr>

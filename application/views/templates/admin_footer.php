@@ -119,6 +119,23 @@
             cache: true
         }
     });
+
+    function previewFile() {
+        const produk = document.querySelector('#produk');
+        const produkLabel = document.querySelector('.custom-file-label');
+        const filePreview = document.querySelector('.file-preview');
+
+        produkLabel.textContent = produk.files[0].name;
+
+        const fileproduk = new FileReader();
+        fileproduk.readAsDataURL(produk.files[0]);
+
+        fileproduk.onload = function(e) {
+            $('.label-filePdf').removeAttr('hidden');
+            $('.file-preview').removeAttr('hidden');
+            filePreview.src = e.target.result;
+        }
+    }
 </script>
 </body>
 

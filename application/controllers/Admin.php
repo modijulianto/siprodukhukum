@@ -25,9 +25,34 @@ class Admin extends CI_Controller
     {
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Input Data Produk Hukum";
-        $data['prohum'] = $this->M_admin->get_produkHukum();
         $data['kat'] = $this->M_admin->get_kategori();
         $data['content'] = "data_input/input_prohum";
+
+        $this->form_validation->set_rules('nomor', 'Nomor', 'required|trim');
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim|numeric');
+        $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
+        $this->form_validation->set_rules('tentang', 'Tentang', 'required|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            $this->M_admin->save_prohum($_POST);
+            $this->session->set_flashdata('prohum', 'Added');
+            redirect('Admin/data_produkHukum');
+        }
+    }
+
+    public function update_produkHukum($id)
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Input Data Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_produkHukumById($id);
+        $data['kat'] = $this->M_admin->get_kategori();
+        $data['content'] = "data_input/update_prohum";
 
         $this->form_validation->set_rules('nomor', 'Nomor', 'required|trim');
         $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim|numeric');

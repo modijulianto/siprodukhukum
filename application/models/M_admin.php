@@ -15,6 +15,15 @@ class M_admin extends CI_Model
         return $this->db->get('tb_produk')->result_array();
     }
 
+    public function get_produkHukumById($id)
+    {
+        $this->db->where('md5(tb_produk.id_produk)', $id);
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        return $this->db->get('tb_produk')->row_array();
+    }
+
     public function addTentangBaru($tentangBaru, $id_unit)
     {
         $data = [
@@ -37,7 +46,7 @@ class M_admin extends CI_Model
         $this->upload->do_upload('produk');
 
         // $fileName = url_title($_FILES['produk']['name'], '_', false);
-        $fileName = str_replace("", "_", $_FILES['produk']['name']);
+        $fileName = str_replace(" ", "_", $_FILES['produk']['name']);
 
         $data = [
             'no' => $_POST['nomor'],
