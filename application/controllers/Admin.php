@@ -57,7 +57,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nomor', 'Nomor', 'required|trim');
         $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim|numeric');
         $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
-        $this->form_validation->set_rules('tentang', 'Tentang', 'required|trim');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
 
@@ -66,8 +65,33 @@ class Admin extends CI_Controller
             $this->load->view('templates/template_admin', $data);
             $this->load->view('templates/admin_footer', $data);
         } else {
-            $this->M_admin->save_prohum($_POST);
-            $this->session->set_flashdata('prohum', 'Added');
+            $upload_file = $_FILES['produk']['name'];
+            // print_r($_FILES);
+            // die;
+
+            if ($upload_file) {
+                $konfigurasi = array(
+                    'allowed_types' => 'pdf|doc|docx',
+                    'upload_path' => realpath('./upload/produk'),
+                    'remove_spaces' => true,
+                    'mod_mime_fix' => true,
+                );
+                $this->load->library('upload', $konfigurasi);
+                $this->upload->do_upload('produk');
+
+                $old_file = $_POST['old_produk'];
+                unlink(FCPATH . 'upload/produk/' . $old_file);
+
+                $fileName = str_replace(" ", "_", $_FILES['produk']['name']);
+                $this->db->set('file', $fileName);
+                $this->db->where('id_produk', $_POST['id']);
+                $this->db->update('tb_produk');
+            } else {
+                echo $this->upload->display_errors();
+            }
+
+            $this->M_admin->update_prohum($_POST);
+            $this->session->set_flashdata('prohum', 'Updated');
             redirect('Admin/data_produkHukum');
         }
     }

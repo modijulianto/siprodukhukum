@@ -13,8 +13,8 @@
         <div class="x_content">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="<?= site_url('Admin/update_produkHukum') ?>" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" id="id" name="id" value="<?= $prohum['judul']; ?>">
+                    <form action="<?= site_url('Admin/update_produkHukum/' . md5($prohum['id_produk'])) ?>" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" id="id" name="id" value="<?= $prohum['id_produk']; ?>">
                         <div class="row form-group">
                             <label class="col-form-label col-md-2 col-sm-2">Nomor<font color="red">*</font></label>
                             <div class="col-md col-sm">
@@ -40,12 +40,19 @@
                         <div class="row form-group">
                             <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
                             <div class="col-md-8 col-sm-8">
-                                <select class="form-control" name="tentang" id="tentang" required></select>
+                                <select class="form-control" name="tentang" id="tentang"></select>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".modalTentangBaru"><i class="fa fa-plus"></i> Tentang Baru</button>
                             </div>
                         </div>
+                        <input type="hidden" name="old_tentang" id="old_tentang" value="<?= $prohum['id_tentang']; ?>">
+                        <div class="row form-group">
+                            <label class="col-form-label col-md-2 col-sm-2"></label>
+                            <div class="col-md col-sm">
+                                <textarea class="form-control" name="view-tentang" id="view-tentang" cols="30" style="width:100%" rows="5" readonly><?= $prohum['nama_tentang']; ?></textarea>
+                            </div>
+                        </div><br><br>
                         <div class="form-group row">
                             <label class="control-label col-md-2 col-sm-2">Kategori</label>
                             <div class="col-md col-sm ">
@@ -80,7 +87,7 @@
                             </div>
                         </div>
                         <br>
-                        <input type="hidden" name="old_produk" id="old_produk" value="<?= ($prohum['file']) ? $prohum['file'] : ''; ?>">
+                        <input type="hidden" name="old_produk" id="old_produk" value="<?= $prohum['file']; ?>">
                         <br><br>
                         <div class="form-group row">
                             <label class="control-label col-md-2 col-sm-2"></label>

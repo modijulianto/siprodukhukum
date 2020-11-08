@@ -62,6 +62,23 @@ class M_admin extends CI_Model
 
         $this->db->insert('tb_produk', $data);
     }
+
+    public function update_prohum()
+    {
+        $data = [
+            'no' => $_POST['nomor'],
+            'id_kategori' => $_POST['id_kategori'],
+            // 'id_tentang' => $_POST['tentang'],
+            'judul' => $_POST['judul'],
+            'tahun' => $_POST['tahun'],
+            'status' => $_POST['status'],
+            'keterangan' => $_POST['keterangan'],
+            'id_unit' => $this->session->userdata('id_unit')
+        ];
+
+        $this->db->where('id_produk', $_POST['id']);
+        $this->db->update('tb_produk', $data);
+    }
     ///////////////////////////////////// PRODUK HUKUM /////////////////////////////////////
 
     ///////////////////////////////////// ADMINISTRATOR /////////////////////////////////////
