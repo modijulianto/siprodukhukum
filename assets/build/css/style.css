@@ -1,0 +1,47 @@
+/* PRODUK HUKUM TERBARU */
+.produk{
+    padding: 20px 20px 20px 0px;
+}
+
+.produk:hover {
+    background: rgba(128, 128, 128, 0.185);
+}
+
+.produk-icon{
+    width: 10%;
+    float: left;
+}
+
+.produk-content {
+    width: 90%;
+    float: right;
+}
+/* END PRODUK HUKUM TERBARU */
+
+/* DAFTAR UNIT */
+.unit{
+    padding: 10px 10px 10px 0px;
+}
+
+.unit:hover {
+    background: rgba(128, 128, 128, 0.185);
+}
+
+.unit  a {
+    grid-area: span;
+}
+
+.unit-icon{
+    width: 10%;
+    float: left;
+}
+
+.unit-content {
+    width: 80%;
+}
+
+.unit-count{
+    width: 10%;
+    float: right;
+}
+/* END DAFTAR UNIT */

@@ -19,52 +19,56 @@
     <link href="<?= base_url("assets/vendors/nprogress/nprogress.css") ?>" rel="stylesheet">
     <!-- iCheck -->
     <link href="<?= base_url("assets/vendors/iCheck/skins/flat/green.css") ?>" rel="stylesheet">
+    <!-- custom style -->
+    <link rel="stylesheet" href="<?= base_url('assets/build/css/style.css'); ?>">
 
 
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <img src="<?= base_url('assets/images/new-LOGO.png'); ?>" class="img-fluid brand-logo navbar-brand" alt="Responsive image">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <div class="col-lg-11">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Unit
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <?php foreach ($unit as $unit) { ?>
-                                <a class="dropdown-item" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white shadow p-3 mb-5 bg-white rounded">
+        <div class="container-fluid">
+            <img src="<?= base_url('assets/images/new-LOGO.png'); ?>" class="img-fluid brand-logo navbar-brand" alt="Responsive image">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="col-lg-11">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="<?= site_url('/'); ?>">Beranda <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unit
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <?php foreach ($unit as $unit) { ?>
+                                    <a class="dropdown-item" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a>
+                                <?php } ?>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Galeri</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-1">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <?php if ($this->session->userdata('email') == null) { ?>
+                                <a href="<?= base_url('Auth'); ?>" class="nav-link">Login</a>
+                            <?php } else { ?>
+                                <a href="<?= base_url('Auth/logout'); ?>" class="nav-link">Logout</a>
                             <?php } ?>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galeri</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="<?= base_url('Auth'); ?>" class="nav-link">Login</a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 100px;">
         <div class="row">
-            <div class="col-lg-12">
-                asdasds
-            </div>
+            <?php $this->load->view($content); ?>
         </div>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>

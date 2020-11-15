@@ -58,7 +58,7 @@
                     <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                         <span class="fa fa-arrows-alt" aria-hidden="true"></span>
                     </a> -->
-                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Member'); ?>" style="width: 50%;">
+                    <a data-toggle="tooltip" data-placement="top" title="Back to Front" href="<?= base_url('Jdih'); ?>" style="width: 50%;">
                         <span class="fa fa-mail-reply" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= base_url('Auth/logout') ?>" style="width: 50%;">
