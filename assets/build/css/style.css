@@ -45,3 +45,31 @@
     float: right;
 }
 /* END DAFTAR UNIT */
+
+/* DAFTAR KATEGORI */
+.kategori{
+    padding: 10px 10px 10px 0px;
+}
+
+.kategori:hover {
+    background: rgba(128, 128, 128, 0.185);
+}
+
+.kategori  a {
+    grid-area: span;
+}
+
+.kategori-icon{
+    width: 10%;
+    float: left;
+}
+
+.kategori-content {
+    width: 80%;
+}
+
+.kategori-count{
+    width: 10%;
+    float: right;
+}
+/* END DAFTAR KATEGORI */

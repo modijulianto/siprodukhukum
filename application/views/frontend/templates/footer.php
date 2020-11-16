@@ -15,7 +15,7 @@
                     <hr color="white">
                     <?php foreach ($unit as $unit) { ?>
                         <ul>
-                            <li style="line-height: 5px;"><a class="text-light" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a><br></li>
+                            <li style="line-height: 5px;"><a class="text-light" href="<?= base_url('Jdih/unit/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a><br></li>
                         </ul>
                     <?php } ?>
                 </div>

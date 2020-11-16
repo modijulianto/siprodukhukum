@@ -20,9 +20,42 @@ class M_jdih extends CI_Model
         return $this->db->get('tb_produk')->row_array();
     }
 
+    public function getProhumByIdUnit($id)
+    {
+        $this->db->order_by('tahun', 'DESC');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->where('md5(tb_produk.id_unit)', $id);
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    public function getProhumByIdKategori($id)
+    {
+        $this->db->order_by('tahun', 'DESC');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->where('md5(tb_produk.id_kategori)', $id);
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    public function getKatProhumByIdUnit($id)
+    {
+        $this->db->where('md5(id_unit)', $id);
+        return $this->db->get('tb_kategori')->result_array();
+    }
+
     public function getUnit()
     {
         return $this->db->get('tb_unit')->result_array();
+    }
+
+    public function getUnitById($id)
+    {
+        return $this->db->get_where('tb_unit', ['md5(id_unit)' => $id])->row_array();
     }
 
     public function getTahun()
@@ -44,5 +77,10 @@ class M_jdih extends CI_Model
     public function getKategori()
     {
         return $this->db->get('tb_kategori')->result_array();
+    }
+
+    public function getKategoriById($id)
+    {
+        return $this->db->get_where('tb_kategori', ['md5(id_kategori)' => $id])->row_array();
     }
 }
