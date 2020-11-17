@@ -42,6 +42,7 @@
                             </div>
                         </div>
                     <?php } ?>
+                    <?= $this->pagination->create_links(); ?>
                 </div>
             </div>
         </div>

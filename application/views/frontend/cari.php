@@ -4,10 +4,10 @@
             <h6 class="m-0"><b><i class="fa fa-search"></i>&emsp; CARI PRODUK HUKUM</b></h6>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="<?= base_url('Jdih/cari'); ?>" method="POST">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <input type="text" class="form-control" id="prohum" name="prohum" placeholder="Cari produk hukum">
+                        <input type="text" class="form-control" id="prohum" name="prohum" placeholder="Cari produk hukum" autocomplete="off">
                     </div>
                 </div>
                 <br>
@@ -63,7 +63,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn text-white" style=" padding: 10px 30px 10px 30px; float:right; background: #288ACB">Cari</button>
+                <input type="submit" name="submit" class="btn text-white" style=" padding: 10px 30px 10px 30px; float:right; background: #288ACB">
+                <!-- <button type="submit" class="btn text-white" style=" padding: 10px 30px 10px 30px; float:right; background: #288ACB">Cari</button> -->
             </form>
         </div>
     </div>

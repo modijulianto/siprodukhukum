@@ -1,12 +1,24 @@
 <?php
 class M_jdih extends CI_Model
 {
+    public function cariProhum($limit, $start, $prohum = null)
+    {
+        if ($prohum) {
+            $this->db->like('judul', $prohum);
+        }
+
+        $this->db->order_by('tahun', 'DESC');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        return $this->db->get('tb_produk', $limit, $start)->result_array();
+    }
+
     public function getProhumBaru()
     {
         $this->db->order_by('tahun', 'DESC');
         $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
-        return $this->db->get('tb_produk', 10)->result_array();
+        return $this->db->get('tb_produk', 5)->result_array();
     }
 
     public function getProhumById($id)
@@ -20,7 +32,7 @@ class M_jdih extends CI_Model
         return $this->db->get('tb_produk')->row_array();
     }
 
-    public function getProhumByIdUnit($id)
+    public function getProhumByIdUnit($id, $limit, $start)
     {
         $this->db->order_by('tahun', 'DESC');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
@@ -28,7 +40,13 @@ class M_jdih extends CI_Model
         $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
         $this->db->where('md5(tb_produk.id_unit)', $id);
-        return $this->db->get('tb_produk')->result_array();
+        return $this->db->get('tb_produk', $limit, $start)->result_array();
+    }
+
+    public function countProdukUnit($id)
+    {
+        $this->db->where('md5(tb_produk.id_unit)', $id);
+        return $this->db->get('tb_produk')->num_rows();
     }
 
     public function getProhumByIdKategori($id)
