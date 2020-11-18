@@ -1,10 +1,25 @@
 <?php
 class M_jdih extends CI_Model
 {
-    public function cariProhum($limit, $start, $prohum = null)
+    public function cariProhum($limit, $start, $prohum = null, $no = null, $tahun = null, $id_unit = null, $id_kategori = null, $status = null)
     {
         if ($prohum) {
             $this->db->like('judul', $prohum);
+        }
+        if ($no) {
+            $this->db->like('no', $no);
+        }
+        if ($tahun) {
+            $this->db->like('tahun', $tahun);
+        }
+        if ($id_unit) {
+            $this->db->like('tb_produk.id_unit', $id_unit);
+        }
+        if ($id_kategori) {
+            $this->db->like('tb_produk.id_kategori', $id_kategori);
+        }
+        if ($status) {
+            $this->db->like('status', $status);
         }
 
         $this->db->order_by('tahun', 'DESC');

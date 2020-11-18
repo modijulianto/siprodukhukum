@@ -13,7 +13,7 @@
                 <div class="text-light mb-auto" style="margin-top: 10px;">
                     <b>&emsp; UNIT</b>
                     <hr color="white">
-                    <?php foreach ($unit as $unit) { ?>
+                    <?php foreach ($opt_unit as $unit) { ?>
                         <ul>
                             <li style="line-height: 5px;"><a class="text-light" href="<?= base_url('Jdih/unit/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a><br></li>
                         </ul>

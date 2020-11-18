@@ -52,7 +52,7 @@
                     <h6 class="m-0"><b><i class="fa fa-bank"></i>&emsp; UNIT</b></h6>
                 </div>
                 <div class="card-body">
-                    <?php foreach ($unit as $val) { ?>
+                    <?php foreach ($opt_unit as $val) { ?>
                         <div class="unit">
                             <div class="col-md-12">
                                 <div class="row">

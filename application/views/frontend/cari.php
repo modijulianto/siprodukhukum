@@ -20,10 +20,10 @@
                     </div>
                     <div class="col-lg-2 col-md-2">
                         <div class="form-group">
-                            <label for="no">Tahun</label>
+                            <label for="tahun">Tahun</label>
                             <select name="tahun" id="tahun" class="form-control custom-select">
                                 <option value="">Semua</option>
-                                <?php foreach ($tahun as $val) { ?>
+                                <?php foreach ($opt_tahun as $val) { ?>
                                     <option value="<?= $val['tahun']; ?>"><?= $val['tahun']; ?></option>
                                 <?php } ?>
                             </select>
@@ -31,10 +31,10 @@
                     </div>
                     <div class="col-lg-3 col-md-3">
                         <div class="form-group">
-                            <label for="no">Unit</label>
-                            <select name="unit" id="unit" class="form-control custom-select">
+                            <label for="id_unit">Unit</label>
+                            <select name="id_unit" id="id_unit" class="form-control custom-select">
                                 <option value="">Semua</option>
-                                <?php foreach ($unit as $val) { ?>
+                                <?php foreach ($opt_unit as $val) { ?>
                                     <option value="<?= $val['id_unit']; ?>"><?= $val['nama_unit']; ?></option>
                                 <?php } ?>
                             </select>
@@ -42,10 +42,10 @@
                     </div>
                     <div class="col-lg-3 col-md-3">
                         <div class="form-group">
-                            <label for="no">Kategori</label>
+                            <label for="id_kategori">Kategori</label>
                             <select name="id_kategori" id="id_kategori" class="form-control custom-select">
                                 <option value="">Semua</option>
-                                <?php foreach ($kategori as $val) { ?>
+                                <?php foreach ($opt_kategori as $val) { ?>
                                     <option value="<?= $val['id_kategori']; ?>"><?= $val['nama_kategori']; ?></option>
                                 <?php } ?>
                             </select>
@@ -53,10 +53,10 @@
                     </div>
                     <div class="col-lg-2 col-md-2">
                         <div class="form-group">
-                            <label for="no">Status</label>
+                            <label for="status">Status</label>
                             <select name="status" id="status" class="form-control custom-select">
                                 <option value="">Semua</option>
-                                <?php foreach ($status as $val) { ?>
+                                <?php foreach ($opt_status as $val) { ?>
                                     <option value="<?= $val['status']; ?>"><?= $val['status']; ?></option>
                                 <?php } ?>
                             </select>
