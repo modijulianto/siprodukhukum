@@ -97,6 +97,17 @@ class M_admin extends CI_Model
         return $admin;
     }
 
+    public function get_numRows_admin()
+    {
+        $this->db->where('role_id', 1);
+        $query = $this->db->get('tb_user');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
     public function save_admin()
     {
         $konfigurasi = array(
@@ -146,6 +157,17 @@ class M_admin extends CI_Model
         $this->db->where('id=', $id);
         $operator = $this->db->get('tb_user')->row_array();
         return $operator;
+    }
+
+    public function get_numRows_operator()
+    {
+        $this->db->where('role_id', 2);
+        $query = $this->db->get('tb_user');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
     }
 
     public function save_operator()
