@@ -26,4 +26,12 @@ class Export extends CI_Controller
         $data['tot_opr'] = $this->M_admin->get_numRows_operator();
         $this->load->view('export/excel/operator', $data);
     }
+
+    public function excel_prohum()
+    {
+        $data['title'] = 'Laporan Data Produk Hukum';
+        $data['opr'] = $this->M_admin->get_operator();
+        $data['tot_opr'] = $this->M_admin->get_numRows_operator();
+        $this->load->view('export/excel/operator', $data);
+    }
 }
