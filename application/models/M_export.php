@@ -4,11 +4,16 @@ class M_export extends CI_Model
     public function getProhum($tahun = null, $unit = null)
     {
         if ($tahun && $unit) {
+            $units = $_POST['unit'];
             $this->db->where('tahun', $tahun);
-            $this->db->where('id_unit', $unit);
-        }
-        if ($tahun && $unit == null) {
+            $this->db->where_in('tb_produk.id_unit', $units);
+            $this->db->order_by('tb_produk.id_unit');
+        } elseif ($tahun && $unit == null) {
             $this->db->where('tahun', $tahun);
+        } elseif ($unit && $tahun == null) {
+            $units = $_POST['unit'];
+            $this->db->where_in('tb_produk.id_unit', $units);
+            $this->db->order_by('tb_produk.id_unit');
         }
 
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');

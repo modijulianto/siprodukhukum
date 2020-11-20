@@ -13,10 +13,10 @@ header("Expires: 0");
 <table border="1" width="100%">
     <thead>
         <tr>
-            <td style="background-color:#0779FB">ID</td>
-            <td style="background-color:#0779FB">Nama Operator</td>
-            <td style="background-color:#0779FB">Email</td>
-            <td style="background-color:#0779FB">Tanggal Terdaftar</td>
+            <td style="background-color:#44749D">ID</td>
+            <td style="background-color:#44749D">Nama Operator</td>
+            <td style="background-color:#44749D">Email</td>
+            <td style="background-color:#44749D">Tanggal Terdaftar</td>
         </tr>
     </thead>
 

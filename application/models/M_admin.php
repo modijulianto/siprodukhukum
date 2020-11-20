@@ -148,6 +148,7 @@ class M_admin extends CI_Model
     public function get_operator()
     {
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_user.id_unit');
+        $this->db->order_by('id', 'DESC');
         return $this->db->get_where('tb_user', ['role_id' => 2])->result_array();
     }
 
