@@ -213,7 +213,7 @@ class M_admin extends CI_Model
     ///////////////////////////////////// UNIT /////////////////////////////////////
     public function get_unit()
     {
-        $this->db->order_by('id_unit', 'DESC');
+        $this->db->order_by('id_unit', 'ASC');
         return $this->db->get('tb_unit')->result_array();
     }
 

@@ -13,13 +13,9 @@
         <div class="x_content">
             <div class="row">
                 <div class="col-sm-12">
-                    <a href="<?= base_url("Export/excel_prohum") ?>" class="btn btn-primary" style="float: left">
+                    <a href="<?= base_url("Export/pdf_prohum") ?>" data-toggle="modal" data-target="#modalExport" class="btn btn-primary" style="float: left">
                         <i class="fa fa-download"></i>
-                        Excel
-                    </a>
-                    <a href="<?= base_url("Export/pdf_prohum") ?>" class="btn btn-primary" style="float: left">
-                        <i class="fa fa-download"></i>
-                        PDF
+                        Export
                     </a>
                     <a href="<?= base_url('Admin/input_produkHukum'); ?>" class="btn btn-primary" style="float: right">
                         <i class="fa fa-plus"></i>
@@ -76,55 +72,96 @@
     </div>
 </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="modalProdukHukum" tabindex="-1" role="dialog" aria-labelledby="judulModal" aria-hidden="true">
+<!-- Modal Export -->
+<div class="modal fade" id="modalExport" tabindex="-1" role="dialog" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="judulModal">Input Data</h5>
+                <h5 class="modal-title" id="judulModal">Export Data Produk Hukum</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_produkHukum') ?>" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="id" name="id">
-                    <div class="row form-group">
-                        <label class="col-form-label col-md-2 col-sm-2">Nomor<font color="red">*</font></label>
-                        <div class="col-md col-sm">
-                            <input type="text" class="form-control" name="nomor" id="nomor" placeholder="Masukkan nomor produk hukum" required="required" value="<?= set_value('nomor'); ?>" />
-                            <td><?php echo form_error('nomor'); ?></td>
-                        </div>
+                <form action="<?= site_url('Export/excel_prohum') ?>" method="POST" enctype="multipart/form-data">
+                    <label>Export Berdasarkan</label><br>
+                    <select name="filter" id="filter" class="form-control">
+                        <option value="1">Semua Produk Hukum</option>
+                        <option value="2">Per Tahun</option>
+                    </select>
+
+                    <div id="form-tahun">
+                        <label>Tahun</label><br>
+                        <select name="tahun" id="tahun" class="form-control">
+                            <option value="">-- Pilih --</option>
+                            <?php foreach ($opt_tahun as $val) { ?>
+                                <option value="<?= $val['tahun']; ?>"><?= $val['tahun']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-form-label col-md-2 col-sm-2">Judul<font color="red">*</font></label>
-                        <div class="col-md col-sm">
-                            <input type="text" class="form-control" name="judul" id="judul" placeholder="Masukkan judul produk hukum" required="required" value="<?= set_value('judul'); ?>" />
-                            <td><?php echo form_error('judul'); ?></td>
-                        </div>
+
+
+                    <div class="form-group mt-4">
+                        <hr color="blue" class>
+                        <select name="filterUnit" id="filterUnit" class="form-control">
+                            <option value="1">Semua Unit</option>
+                            <option value="2">Pilih Unit</option>
+                        </select>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
-                        <div class="col-md col-sm">
-                            <select class="form-control" name="tentang" id="tentang" required></select>
-                        </div>
+
+                    <div class="form-group mt-4" id="form-unit">
+                        <!-- <label>Pilih unit : </label><br> -->
+                        <?php foreach ($unit as $val) { ?>
+                            <input type="checkbox" class="flat" value="<?= $val['id_unit']; ?>" name="unit[]" id="unit[]">&emsp; <?= $val['nama_unit']; ?> <br>
+                        <?php } ?>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-form-label col-md-2 col-sm-2">File</label>
-                        <div class="col-md col-sm">
-                            <input type="file" name="produk" />
-                        </div>
-                    </div>
-                    <br>
-                    <input type="hidden" name="old_image" id="old_image">
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah Data</button>
+                        <button type="submit" class="btn btn-primary" id="excelProhum"><i class="fa fa-download"></i> Excel</button>
+                        <button type="submit" class="btn btn-primary" id="pdfProhum"><i class="fa fa-download"></i> Pdf</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    $(function() {
+        $(document).ready(function() { // Ketika halaman selesai di load
+            $('#form-bulan, #form-tahun').hide(); // Sebagai default kita sembunyikan form filter tanggal, bulan & tahunnya
+
+            $('#filter').change(function() { // Ketika user memilih filter
+                if ($(this).val() == '1') { // Jika filter nya 1 (semua produk hukum)
+                    $('#form-tahun').hide(); // sembunyikan form tahun
+                    $('#tahun').val('');
+                } else if ($(this).val() == '2') { // Jika filter nya 2 (per tahun)
+                    $('#form-tahun').show(); // Tampilkan form tahun
+                }
+
+                $('#form-tahun select').val(''); // Clear data pada textbox tanggal, combobox bulan & tahun
+            })
+
+            $('#form-unit').hide();
+            // jika filter untuk unit diubah
+            $('#filterUnit').change(function() {
+                if ($(this).val() == '1') { //jika user memilih semua
+                    $('#form-unit').hide();
+                } else if ($(this).val() == '2') {
+                    $('#form-unit').show();
+                }
+            })
+        })
+
+        // PENGELUARAN
+        $('#excelProhum').on('click', function() {
+            $('.modal-body form').attr('action', '<?= site_url('Export/excel_prohum') ?>');
+        });
+
+        $('#pdfProhum').on('click', function() {
+            $('.modal-body form').attr('action', '<?= site_url('Export/pdf_prohum') ?>');
+        });
+    })
+</script>

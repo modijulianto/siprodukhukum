@@ -7,6 +7,7 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_admin');
+        $this->load->model('M_jdih');
         is_logged_in();
     }
 
@@ -16,6 +17,8 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukum();
+        $data['unit'] = $this->M_admin->get_unit();
+        $data['opt_tahun'] = $this->M_jdih->getTahun();
         $data['content'] = "data_table/data_produkHukum";
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);
