@@ -6,6 +6,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('M_dashboard');
         is_logged_in();
     }
 
@@ -15,6 +16,7 @@ class User extends CI_Controller
         $data['title'] = "Dasboard";
         $data['meta'] = "Dasboard";
         $data['content'] = "user/dashboard";
+        $data['rowsTahun'] = array_reverse($this->M_dashboard->getTahun());
         $data['chart'] = TRUE;
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);

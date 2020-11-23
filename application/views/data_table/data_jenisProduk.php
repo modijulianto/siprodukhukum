@@ -6,59 +6,62 @@
     </div>
 </div>
 
-<div class="col-md-12 col-sm-12 ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>DATA JENIS PRODUK</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <button type="button" id="tombolTambahJenis" class="btn btn-primary tombolTambahJenis" data-toggle="modal" data-target="#modalJenis" style="float: right">
-                        <i class="fa fa-plus"></i>
-                        Add Jenis
-                    </button>
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                            <?= $this->session->flashdata('message'); ?>
-                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('jenis'); ?>"></div>
-                            <?php if ($this->session->flashdata('jenis')) : ?>
-                            <?php endif; ?>
-                            <br><br><br>
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Nama Jenis Produk</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
+<div class="clearfix"></div>
 
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($jenis as $val) { ?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DATA JENIS PRODUK</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" id="tombolTambahJenis" class="btn btn-primary tombolTambahJenis" data-toggle="modal" data-target="#modalJenis" style="float: right">
+                            <i class="fa fa-plus"></i>
+                            Add Jenis
+                        </button>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <?= $this->session->flashdata('message'); ?>
+                                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('jenis'); ?>"></div>
+                                <?php if ($this->session->flashdata('jenis')) : ?>
+                                <?php endif; ?>
+                                <br><br><br>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <center><?= $i++; ?></center>
-                                        </td>
-                                        <td><?= $val['nama_jenis']; ?></td>
-                                        <td>
-                                            <center>
-                                                <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <a href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>"><button href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
-                                            </center>
-                                        </td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Nama Jenis Produk</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($jenis as $val) { ?>
+                                        <tr>
+                                            <td>
+                                                <center><?= $i++; ?></center>
+                                            </td>
+                                            <td><?= $val['nama_jenis']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button>
+                                                    <a href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>"><button href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal Jenis Produk -->

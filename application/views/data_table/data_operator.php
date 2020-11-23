@@ -4,75 +4,78 @@
     </div>
 </div>
 
-<div class="col-md-12 col-sm-12 ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>DATA OPERATOR</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href="<?= base_url("Export/excel_operator") ?>" class="btn btn-primary" style="float: left">
-                        <i class="fa fa-download"></i>
-                        Excel
-                    </a>
-                    <a href="<?= base_url("Export/pdf_operator") ?>" class="btn btn-primary" style="float: left">
-                        <i class="fa fa-download"></i>
-                        PDF
-                    </a>
-                    <button type="button" id="tombolTambahOperator" class="btn btn-primary tombolTambahOperator" data-toggle="modal" data-target="#modalOperator" style="float: right">
-                        <i class="fa fa-plus"></i>
-                        Add Operator
-                    </button>
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                            <?= $this->session->flashdata('message'); ?>
-                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('operator'); ?>"></div>
-                            <?php if ($this->session->flashdata('operator')) : ?>
-                            <?php endif; ?>
-                            <br><br><br>
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Nama Operator</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Foto</th>
-                                    <th class="text-center">Unit</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
+<div class="clearfix"></div>
 
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($opr as $val) { ?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DATA OPERATOR</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="<?= base_url("Export/excel_operator") ?>" class="btn btn-primary" style="float: left">
+                            <i class="fa fa-download"></i>
+                            Excel
+                        </a>
+                        <a href="<?= base_url("Export/pdf_operator") ?>" class="btn btn-primary" style="float: left">
+                            <i class="fa fa-download"></i>
+                            PDF
+                        </a>
+                        <button type="button" id="tombolTambahOperator" class="btn btn-primary tombolTambahOperator" data-toggle="modal" data-target="#modalOperator" style="float: right">
+                            <i class="fa fa-plus"></i>
+                            Add Operator
+                        </button>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <?= $this->session->flashdata('message'); ?>
+                                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('operator'); ?>"></div>
+                                <?php if ($this->session->flashdata('operator')) : ?>
+                                <?php endif; ?>
+                                <br><br><br>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <center><?= $i++; ?></center>
-                                        </td>
-                                        <td><?= $val['name']; ?></td>
-                                        <td><?= $val['email']; ?></td>
-                                        <td class="text-center">
-                                            <figure img src="<?= base_url("upload/" . $val['image']) ?>" class="gal"><img src="<?= base_url("upload/" . $val['image']) ?>" alt="" width="50px"></figure>
-                                        </td>
-                                        <td><?= $val['nama_unit']; ?></td>
-                                        <td>
-                                            <center>
-                                                <button type="button" name="ubah" data-toggle="modal" data-target="#modalOperator" id="tombolUbahOperator" class="btn btn-success btn-sm tombolUbahOperator" data-id="<?= $val['id']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <a href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>"><button href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
-                                            </center>
-                                        </td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Nama Operator</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Foto</th>
+                                        <th class="text-center">Unit</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($opr as $val) { ?>
+                                        <tr>
+                                            <td>
+                                                <center><?= $i++; ?></center>
+                                            </td>
+                                            <td><?= $val['name']; ?></td>
+                                            <td><?= $val['email']; ?></td>
+                                            <td class="text-center">
+                                                <figure img src="<?= base_url("upload/" . $val['image']) ?>" class="gal"><img src="<?= base_url("upload/" . $val['image']) ?>" alt="" width="50px"></figure>
+                                            </td>
+                                            <td><?= $val['nama_unit']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" name="ubah" data-toggle="modal" data-target="#modalOperator" id="tombolUbahOperator" class="btn btn-success btn-sm tombolUbahOperator" data-id="<?= $val['id']; ?>"><i class="fa fa-pencil"></i></button>
+                                                    <a href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>"><button href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal -->

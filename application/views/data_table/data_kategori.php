@@ -6,54 +6,58 @@
     </div>
 </div>
 
-<div class="col-md-12 col-sm-12 ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>DATA KATEGORI</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <button type="button" id="tombolTambahKategori" class="btn btn-primary tombolTambahKategori" data-toggle="modal" data-target="#modalKategori" style="float: right">
-                        <i class="fa fa-plus"></i>
-                        Add Kategori
-                    </button>
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                            <?= $this->session->flashdata('message'); ?>
-                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('kategori'); ?>"></div>
-                            <?php if ($this->session->flashdata('kategori')) : ?>
-                            <?php endif; ?>
-                            <br><br><br>
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Nama Kategori</th>
-                                    <th class="text-center">Jenis Produk Hukum</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
+<div class="clearfix"></div>
 
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($kat as $val) { ?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DATA KATEGORI</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" id="tombolTambahKategori" class="btn btn-primary tombolTambahKategori" data-toggle="modal" data-target="#modalKategori" style="float: right">
+                            <i class="fa fa-plus"></i>
+                            Add Kategori
+                        </button>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <?= $this->session->flashdata('message'); ?>
+                                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('kategori'); ?>"></div>
+                                <?php if ($this->session->flashdata('kategori')) : ?>
+                                <?php endif; ?>
+                                <br><br><br>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <center><?= $i++; ?></center>
-                                        </td>
-                                        <td><?= $val['nama_kategori']; ?></td>
-                                        <td><?= $val['nama_jenis']; ?></td>
-                                        <td>
-                                            <center>
-                                                <button type="button" name="ubah" data-toggle="modal" data-target="#modalKategori" id="tombolUbahKategori" class="btn btn-success btn-sm tombolUbahKategori" data-id="<?= $val['id_kategori']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <button href="<?= site_url('Admin/delete_kategori/' . md5($val['id_kategori'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
-                                            </center>
-                                        </td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Nama Kategori</th>
+                                        <th class="text-center">Jenis Produk Hukum</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($kat as $val) { ?>
+                                        <tr>
+                                            <td>
+                                                <center><?= $i++; ?></center>
+                                            </td>
+                                            <td><?= $val['nama_kategori']; ?></td>
+                                            <td><?= $val['nama_jenis']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" name="ubah" data-toggle="modal" data-target="#modalKategori" id="tombolUbahKategori" class="btn btn-success btn-sm tombolUbahKategori" data-id="<?= $val['id_kategori']; ?>"><i class="fa fa-pencil"></i></button>
+                                                    <button href="<?= site_url('Admin/delete_kategori/' . md5($val['id_kategori'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

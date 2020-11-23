@@ -6,57 +6,60 @@
     </div>
 </div>
 
-<div class="col-md-12 col-sm-12 ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>DATA TENTANG</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-primary tombolTambahTentang" data-toggle="modal" data-target=".bs-example-modal-lg" style="float: right;"><i class="fa fa-plus"></i> Add Tentang</button>
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                            <?= $this->session->flashdata('message'); ?>
-                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('tentang'); ?>"></div>
-                            <?php if ($this->session->flashdata('tentang')) : ?>
-                            <?php endif; ?>
-                            <br><br><br>
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Tentang</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
+<div class="clearfix"></div>
 
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($tentang as $val) { ?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DATA TENTANG</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary tombolTambahTentang" data-toggle="modal" data-target=".bs-example-modal-lg" style="float: right;"><i class="fa fa-plus"></i> Add Tentang</button>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <?= $this->session->flashdata('message'); ?>
+                                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('tentang'); ?>"></div>
+                                <?php if ($this->session->flashdata('tentang')) : ?>
+                                <?php endif; ?>
+                                <br><br><br>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <center><?= $i++; ?></center>
-                                        </td>
-                                        <td><?= $val['nama_tentang']; ?></td>
-                                        <td>
-                                            <center>
-                                                <!-- <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button> -->
-                                                <button type="button" name="ubah" data-toggle="modal" data-target=".bs-example-modal-lg" id="tombolUbahTentang" class="btn btn-success btn-sm tombolUbahTentang" data-id="<?= $val['id_tentang']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <button href="<?= site_url('Admin/delete_tentang/' . md5($val['id_tentang'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
-                                            </center>
-                                        </td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Tentang</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($tentang as $val) { ?>
+                                        <tr>
+                                            <td>
+                                                <center><?= $i++; ?></center>
+                                            </td>
+                                            <td><?= $val['nama_tentang']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <!-- <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button> -->
+                                                    <button type="button" name="ubah" data-toggle="modal" data-target=".bs-example-modal-lg" id="tombolUbahTentang" class="btn btn-success btn-sm tombolUbahTentang" data-id="<?= $val['id_tentang']; ?>"><i class="fa fa-pencil"></i></button>
+                                                    <button href="<?= site_url('Admin/delete_tentang/' . md5($val['id_tentang'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Large Modal Tentang -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">

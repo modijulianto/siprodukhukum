@@ -4,67 +4,70 @@
     </div>
 </div>
 
-<div class="col-md-12 col-sm-12 ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>DATA UNIT</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href="<?= base_url("Export/excel_unit") ?>" class="btn btn-primary" style="float: left">
-                        <i class="fa fa-download"></i>
-                        Excel
-                    </a>
-                    <a href="<?= base_url("Export/pdf_unit") ?>" class="btn btn-primary" style="float: left">
-                        <i class="fa fa-download"></i>
-                        PDF
-                    </a>
-                    <button type="button" id="tombolTambahUnit" class="btn btn-primary tombolTambahUnit" data-toggle="modal" data-target="#modalUnit" style="float: right">
-                        <i class="fa fa-plus"></i>
-                        Add Unit
-                    </button>
-                    <div class="card-box table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                            <?= $this->session->flashdata('message'); ?>
-                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('unit'); ?>"></div>
-                            <?php if ($this->session->flashdata('unit')) : ?>
-                            <?php endif; ?>
-                            <br><br><br>
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Nama Unit</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
+<div class="clearfix"></div>
 
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($unit as $val) { ?>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DATA UNIT</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="<?= base_url("Export/excel_unit") ?>" class="btn btn-primary" style="float: left">
+                            <i class="fa fa-download"></i>
+                            Excel
+                        </a>
+                        <a href="<?= base_url("Export/pdf_unit") ?>" class="btn btn-primary" style="float: left">
+                            <i class="fa fa-download"></i>
+                            PDF
+                        </a>
+                        <button type="button" id="tombolTambahUnit" class="btn btn-primary tombolTambahUnit" data-toggle="modal" data-target="#modalUnit" style="float: right">
+                            <i class="fa fa-plus"></i>
+                            Add Unit
+                        </button>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <?= $this->session->flashdata('message'); ?>
+                                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('unit'); ?>"></div>
+                                <?php if ($this->session->flashdata('unit')) : ?>
+                                <?php endif; ?>
+                                <br><br><br>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <center><?= $i++; ?></center>
-                                        </td>
-                                        <td><?= $val['nama_unit']; ?></td>
-                                        <td>
-                                            <center>
-                                                <button type="button" name="ubah" data-toggle="modal" data-target="#modalUnit" id="tombolUbahUnit" class="btn btn-success btn-sm tombolUbahUnit" data-id="<?= $val['id_unit']; ?>"><i class="fa fa-pencil"></i></button>
-                                                <button href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
-                                            </center>
-                                        </td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Nama Unit</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($unit as $val) { ?>
+                                        <tr>
+                                            <td>
+                                                <center><?= $i++; ?></center>
+                                            </td>
+                                            <td><?= $val['nama_unit']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" name="ubah" data-toggle="modal" data-target="#modalUnit" id="tombolUbahUnit" class="btn btn-success btn-sm tombolUbahUnit" data-id="<?= $val['id_unit']; ?>"><i class="fa fa-pencil"></i></button>
+                                                    <button href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal -->

@@ -2,8 +2,6 @@
     <div class="title_left">
         <h3>USER PROFILE</h3>
     </div>
-
-
 </div>
 
 <div class="clearfix"></div>
