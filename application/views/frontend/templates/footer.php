@@ -28,14 +28,12 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script src="<?= base_url("assets") ?>/vendors/validator/multifield.js"></script>
 <script src="<?= base_url("assets") ?>/vendors/validator/validator.js"></script>
-<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/jquery-3.5.1.min.js") ?>"></script>
 
 
-<!-- jQuery -->
-<script src="<?= base_url("assets/vendors/jquery/dist/jquery.min.js") ?>"></script>
+
 <!-- Bootstrap -->
 <script src="<?= base_url("assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js") ?>"></script>
 <!-- FastClick -->

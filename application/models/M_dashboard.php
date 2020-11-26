@@ -3,19 +3,82 @@
 class M_dashboard extends CI_Model
 {
     // get tahun 
-    public function getTahun()
+    public function getJenisProduk()
     {
-        $this->db->select('tahun');
-        $this->db->group_by('tahun');
-        $this->db->order_by('tahun', 'DESC');
-        return $this->db->get('tb_produk', 5)->result_array();
+        $this->db->where('id_unit', $this->session->userdata('id_unit'));
+        return $this->db->get('tb_jenis_produk')->result_array();
     }
 
-    // menghitung jumlah produk hukum pertahun
-    public function get_numRows_produk()
+    public function getKatProduk()
     {
-        $this->db->where('tahun', date('Y'));
+        $this->db->where('id_unit', $this->session->userdata('id_unit'));
+        return $this->db->get('tb_kategori')->result_array();
+    }
+
+    public function getJmlProdukBerlaku($id)
+    {
+        $this->db->where('id_kategori', $id);
+        $this->db->where('status', 'Berlaku');
         $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getJmlProdukTidakBerlaku($id)
+    {
+        $this->db->where('id_kategori', $id);
+        $this->db->where('status', 'Tidak Berlaku');
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    // get status produk hukum
+    public function getStatus()
+    {
+        $this->db->select('status');
+        $this->db->group_by('status');
+        $this->db->order_by('status', 'ASC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    public function getJmlProduk_byStatus($status)
+    {
+        if ($this->session->userdata('id_unit') != 1) {
+            $this->db->where('id_unit', $this->session->userdata('id_unit'));
+        }
+
+        $this->db->where('status', $status);
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    // get jumlah Admin
+    public function getJmlAdmin()
+    {
+        $this->db->where('role_id', 1);
+        $query = $this->db->get('tb_user');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getJmlOperator()
+    {
+        $this->db->where('role_id', 2);
+        $query = $this->db->get('tb_user');
         if ($query->num_rows() > 0) {
             return $query->num_rows();
         } else {

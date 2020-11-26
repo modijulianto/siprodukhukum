@@ -71,7 +71,8 @@
                                                 <?= strtoupper($val['nama_kategori']); ?>
                                             </div>
                                             <div class="kategori-count">
-                                                <span class="badge badge-info">100</span>
+                                                <?php $jml = $this->M_jdih->getJmlProdukByKat($val['id_kategori']); ?>
+                                                <span class="badge badge-info"><?= $jml; ?></span>
                                             </div>
                                         </div>
                                         <a href="<?= site_url('Jdih/kategori/' . md5($val['id_kategori'])); ?>" class="stretched-link"></a>
@@ -98,7 +99,8 @@
                                                 <?= $val['nama_unit']; ?>
                                             </div>
                                             <div class="unit-count">
-                                                <span class="badge badge-info">100</span>
+                                                <?php $jml = $this->M_jdih->getJmlProdukByUnit($val['id_unit']); ?>
+                                                <span class="badge badge-info"><?= $jml; ?></span>
                                             </div>
                                         </div>
                                         <a href="<?= site_url('Jdih/unit/' . md5($val['id_unit'])); ?>" class="stretched-link"></a>

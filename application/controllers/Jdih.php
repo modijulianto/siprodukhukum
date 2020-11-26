@@ -140,4 +140,13 @@ class Jdih extends CI_Controller
         $this->load->view('frontend/templates/header', $data);
         $this->load->view('frontend/templates/footer');
     }
+
+    public function statistik()
+    {
+        $data['title'] = "Beranda";
+        $data['content'] = "frontend/statistik";
+        $data['opt_unit'] = $this->M_jdih->getUnit();
+        $this->load->view('frontend/templates/header', $data);
+        $this->load->view('frontend/templates/footer');
+    }
 }

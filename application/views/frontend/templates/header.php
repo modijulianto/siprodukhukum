@@ -21,6 +21,8 @@
     <link href="<?= base_url("assets/vendors/iCheck/skins/flat/green.css") ?>" rel="stylesheet">
     <!-- custom style -->
     <link rel="stylesheet" href="<?= base_url('assets/build/css/style.css'); ?>">
+    <!-- jQuery -->
+    <script src="<?= base_url("assets/vendors/jquery/dist/jquery.min.js") ?>"></script>
 
 
 </head>
@@ -33,7 +35,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="col-lg-11">
+                <div class="col-lg-10">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
                             <a class="nav-link" href="<?= site_url('/'); ?>">Beranda <span class="sr-only">(current)</span></a>
@@ -43,18 +45,25 @@
                                 Unit
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <?php foreach ($unit as $unit) { ?>
-                                    <a class="dropdown-item" href="<?= base_url('Jdih/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a>
+                                <?php foreach ($opt_unit as $unit) { ?>
+                                    <a class="dropdown-item" href="<?= site_url('Jdih/unit/') . md5($unit['id_unit']); ?>"><?= $unit['nama_unit']; ?></a>
                                 <?php } ?>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Galeri</a>
+                            <a class="nav-link" href="<?= site_url('Jdih/statistik'); ?>">Statistik</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-lg-2">
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <?php if ($this->session->userdata('email') != null) { ?>
+                                <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                    <a href="<?= base_url('User'); ?>" class="nav-link">Dashboard</a>
+                                <?php } ?>
+                            <?php } ?>
+                        </li>
                         <li class="nav-item">
                             <?php if ($this->session->userdata('email') == null) { ?>
                                 <a href="<?= base_url('Auth'); ?>" class="nav-link">Login</a>

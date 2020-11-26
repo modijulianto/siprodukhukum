@@ -77,7 +77,8 @@ class M_jdih extends CI_Model
 
     public function getKatProhumByIdUnit($id)
     {
-        $this->db->where('md5(id_unit)', $id);
+        $this->db->where('id_unit', 1);
+        $this->db->or_where('md5(id_unit)', $id);
         return $this->db->get('tb_kategori')->result_array();
     }
 
@@ -115,5 +116,27 @@ class M_jdih extends CI_Model
     public function getKategoriById($id)
     {
         return $this->db->get_where('tb_kategori', ['md5(id_kategori)' => $id])->row_array();
+    }
+
+    public function getJmlProdukByUnit($id)
+    {
+        $this->db->where('id_unit', $id);
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getJmlProdukByKat($id)
+    {
+        $this->db->where('id_kategori', $id);
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
     }
 }

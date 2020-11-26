@@ -16,8 +16,11 @@ class User extends CI_Controller
         $data['title'] = "Dasboard";
         $data['meta'] = "Dasboard";
         $data['content'] = "user/dashboard";
-        $data['rowsTahun'] = array_reverse($this->M_dashboard->getTahun());
-        $data['chart'] = TRUE;
+        $data['jnsProduk'] = $this->M_dashboard->getJenisProduk();
+        $data['katProduk'] = $this->M_dashboard->getKatProduk();
+        $data['status'] = $this->M_dashboard->getStatus();
+        $data['jmlAdm'] = $this->M_dashboard->getJmlAdmin();
+        $data['jmlOpr'] = $this->M_dashboard->getJmlOperator();
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);
         $this->load->view('templates/admin_footer', $data);

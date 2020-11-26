@@ -2,10 +2,6 @@
 <script src="<?= base_url("assets") ?>/vendors/validator/multifield.js"></script>
 <script src="<?= base_url("assets") ?>/vendors/validator/validator.js"></script>
 
-
-
-<!-- jQuery -->
-<script src="<?= base_url("assets/vendors/jquery/dist/jquery.min.js") ?>"></script>
 <!-- Bootstrap -->
 <script src="<?= base_url("assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js") ?>"></script>
 <!-- FastClick -->
@@ -50,7 +46,6 @@
 
 <!-- Custom Theme Scripts -->
 <script src="<?= base_url("assets/build/js/custom.min.js") ?>"></script>
-
 <script type="text/javascript" src="<?= base_url("assets/build/js/dst/jquery.mask.min.js") ?>"></script>
 
 <!-- Datatables -->
@@ -77,15 +72,9 @@
 
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script.js") ?>"></script>
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script-export.js") ?>"></script>
-<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/google_chart/loader.js") ?>"></script>
 
-<?php if (isset($chart) == TRUE) { ?>
-    <!-- High Chart -->
-    <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/highcharts.js") ?>"></script>
-    <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/highcharts/jquery.highchartTable-min.js") ?>"></script>
-    <!-- <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script> -->
-<?php } ?>
+
+
 
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/vendors/select2/dist/js/select2.min.js") ?>"></script>
 
