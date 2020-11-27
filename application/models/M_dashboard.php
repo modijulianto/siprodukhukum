@@ -9,6 +9,11 @@ class M_dashboard extends CI_Model
         return $this->db->get('tb_jenis_produk')->result_array();
     }
 
+    public function getJenis()
+    {
+        return $this->db->get('tb_jenis_produk')->result_array();
+    }
+
     public function getKatProduk()
     {
         $this->db->where('id_unit', $this->session->userdata('id_unit'));
@@ -79,6 +84,34 @@ class M_dashboard extends CI_Model
     {
         $this->db->where('role_id', 2);
         $query = $this->db->get('tb_user');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getBerlakuByJenis($id_jenis)
+    {
+        $this->db->join('tb_kategori', 'tb_produk.id_kategori=tb_kategori.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->where('tb_kategori.id_jenis', $id_jenis);
+        $this->db->where('status', 'Berlaku');
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getTidakBerlakuByJenis($id_jenis)
+    {
+        $this->db->join('tb_kategori', 'tb_produk.id_kategori=tb_kategori.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->where('tb_kategori.id_jenis', $id_jenis);
+        $this->db->where('status', 'Tidak Berlaku');
+        $query = $this->db->get('tb_produk');
         if ($query->num_rows() > 0) {
             return $query->num_rows();
         } else {

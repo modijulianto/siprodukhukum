@@ -8,6 +8,7 @@ class Jdih extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_jdih');
+        $this->load->model('M_dashboard');
     }
 
     public function index()
@@ -146,6 +147,7 @@ class Jdih extends CI_Controller
         $data['title'] = "Beranda";
         $data['content'] = "frontend/statistik";
         $data['opt_unit'] = $this->M_jdih->getUnit();
+        $data['jenis'] = $this->M_jdih->getJenis();
         $this->load->view('frontend/templates/header', $data);
         $this->load->view('frontend/templates/footer');
     }

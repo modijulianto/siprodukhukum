@@ -73,9 +73,6 @@
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script.js") ?>"></script>
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script-export.js") ?>"></script>
 
-
-
-
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/vendors/select2/dist/js/select2.min.js") ?>"></script>
 
 

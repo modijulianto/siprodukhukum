@@ -78,8 +78,6 @@
 
 <!-- Custom Theme Scripts -->
 <script src="<?= base_url("assets/build/js/custom.min.js") ?>"></script>
-
-
 <script type="text/javascript" src="<?= base_url("assets/build/js/dst/jquery.mask.min.js") ?>"></script>
 
 

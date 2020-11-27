@@ -11,6 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/Undiksha.ico') ?>" style="width:16px; height:16px">
 
+
+
     <!-- Bootstrap -->
     <link href="<?= base_url("assets/vendors/bootstrap/dist/css/bootstrap.min.css") ?>" rel="stylesheet">
     <!-- Font Awesome -->
@@ -61,6 +63,8 @@
                             <?php if ($this->session->userdata('email') != null) { ?>
                                 <?php if ($this->session->userdata('role_id') == 1) { ?>
                                     <a href="<?= base_url('User'); ?>" class="nav-link">Dashboard</a>
+                                <?php } else { ?>
+                                    <a class="nav-link"> </a>
                                 <?php } ?>
                             <?php } ?>
                         </li>
