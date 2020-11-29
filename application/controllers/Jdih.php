@@ -147,7 +147,13 @@ class Jdih extends CI_Controller
         $data['title'] = "Beranda";
         $data['content'] = "frontend/statistik";
         $data['opt_unit'] = $this->M_jdih->getUnit();
+        $data['jml'] = $this->M_jdih->getProdukByTahun();
+        $data['opt_tahun'] = $this->M_jdih->getTahun();
+
+        // Chart Statistik
         $data['jenis'] = $this->M_jdih->getJenis();
+        $data['tahun'] = $this->M_jdih->statistikTahun();
+
         $this->load->view('frontend/templates/header', $data);
         $this->load->view('frontend/templates/footer');
     }

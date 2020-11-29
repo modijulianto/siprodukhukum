@@ -16,8 +16,7 @@
                         <font size="5"><?= $sts['status']; ?></font>
                     </div>
                 </div>
-                <?php $jml = $this->M_dashboard->getJmlProduk_byStatus($sts['status']) ?>
-                <h4 style="margin-left: 10px"><?= $jml; ?></h4>
+                <h4 style="margin-left: 10px"><?= $sts['jumlah']; ?></h4>
             </div>
         </div>
     <?php } ?>
@@ -46,6 +45,62 @@
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
             <div class="x_title">
+                <h2>Statistik Unit Produk Hukum</h2>
+                <div class="clearfix"></div>
+            </div>
+            <table class="highchart" data-graph-container-before="1" data-graph-type="column" style="display:none" data-graph-datalabels-enabled="1" data-graph-datalabels-color="white">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th data-graph-stack-group="1">Berlaku</th>
+                        <th data-graph-stack-group="1">Tidak Berlaku</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($tahun as $thn) { ?>
+                        <tr>
+                            <td><?= $thn['tahun']; ?></td>
+                            <td><?= $thn['berlaku']; ?></td>
+                            <td><?= $thn['tidak_berlaku']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Statistik Unit Produk Hukum</h2>
+                <div class="clearfix"></div>
+            </div>
+            <table class="highchart" data-graph-container-before="1" data-graph-type="column" style="display:none" data-graph-datalabels-enabled="1" data-graph-datalabels-color="white">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th data-graph-stack-group="1">Berlaku</th>
+                        <th data-graph-stack-group="1">Tidak Berlaku</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($unit as $unit) { ?>
+                        <tr>
+                            <td><?= $unit['nama_unit']; ?></td>
+                            <td><?= $unit['berlaku']; ?></td>
+                            <td><?= $unit['tidak_berlaku']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-6 ">
+        <div class="x_panel">
+            <div class="x_title">
                 <h2>Statistik Jenis Produk Hukum</h2>
                 <div class="clearfix"></div>
             </div>
@@ -61,19 +116,15 @@
                     <?php foreach ($jenis as $jen) { ?>
                         <tr>
                             <td><?= $jen['nama_jenis']; ?></td>
-                            <?php $berlaku = $this->M_dashboard->getBerlakuByJenis($jen['id_jenis']) ?>
-                            <?php $tdkBerlaku = $this->M_dashboard->getTidakBerlakuByJenis($jen['id_jenis']) ?>
-                            <td><?= $berlaku; ?></td>
-                            <td><?= $tdkBerlaku; ?></td>
+                            <td><?= $jen['berlaku']; ?></td>
+                            <td><?= $jen['tidak_berlaku']; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 ">
+    <div class="col-md-6 col-sm-6 ">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Statistik Kategori Produk Hukum</h2>
@@ -91,10 +142,8 @@
                     <?php foreach ($katProduk as $kat) { ?>
                         <tr>
                             <td><?= $kat['nama_kategori']; ?></td>
-                            <?php $jmlBerlaku = $this->M_dashboard->getJmlProdukBerlaku($kat['id_kategori']) ?>
-                            <?php $jmlTidakBerlaku = $this->M_dashboard->getJmlProdukTidakBerlaku($kat['id_kategori']) ?>
-                            <td><?= $jmlBerlaku ?></td>
-                            <td><?= $jmlTidakBerlaku ?></td>
+                            <td><?= $kat['berlaku']; ?></td>
+                            <td><?= $kat['tidak_berlaku']; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>

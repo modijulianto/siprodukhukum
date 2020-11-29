@@ -92,11 +92,6 @@ class M_jdih extends CI_Model
         return $this->db->get_where('tb_unit', ['md5(id_unit)' => $id])->row_array();
     }
 
-    public function getJenis()
-    {
-        return $this->db->get('tb_jenis_produk')->result_array();
-    }
-
     public function getTahun()
     {
         $this->db->select('tahun');
@@ -172,4 +167,67 @@ class M_jdih extends CI_Model
             return 0;
         }
     }
+
+    public function getBerlakuByTahun($tahun)
+    {
+        $this->db->where('tahun', $tahun);
+        $this->db->where('status', 'Berlaku');
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getTidakBerlakuByTahun($tahun)
+    {
+        $this->db->where('tahun', $tahun);
+        $this->db->where('status', 'Tidak Berlaku');
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
+    public function getProdukByTahun()
+    {
+        $this->db->select('tahun');
+        $this->db->select('COUNT(tahun) AS jml');
+        $this->db->select('status');
+        $this->db->group_by('status');
+        $this->db->group_by('tahun');
+        $this->db->order_by('tahun', 'ASC');
+        // $this->db->where('status', 'Berlaku');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+
+    ////////////////////// STATISTIK //////////////////////
+    // Statistik per Tahun
+    public function statistikTahun()
+    {
+        $this->db->select('tahun');
+        $this->db->select('COUNT(IF(status="Berlaku", tahun, NULL)) AS berlaku');
+        $this->db->select('COUNT(IF(status="Tidak Berlaku", tahun, NULL)) AS tidak_berlaku');
+        $this->db->group_by('tahun');
+        $this->db->order_by('tahun', 'ASC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    // Statistik Per Jenis
+    public function getJenis()
+    {
+        $this->db->join('tb_kategori', 'tb_produk.id_kategori=tb_kategori.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
+        $this->db->select('nama_jenis');
+        $this->db->select('COUNT(IF(status="Berlaku",tb_produk.id_produk,NULL)) AS berlaku');
+        $this->db->select('COUNT(IF(status="Tidak Berlaku",tb_produk.id_produk,NULL)) AS tidak_berlaku');
+        $this->db->group_by('tb_kategori.id_jenis');
+        $this->db->order_by('tb_kategori.id_jenis', 'ASC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+    ////////////////////// END STATISTIK //////////////////////
 }
