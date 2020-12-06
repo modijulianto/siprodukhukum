@@ -3,10 +3,62 @@ class M_admin extends CI_Model
 {
 
     ///////////////////////////////////// PRODUK HUKUM /////////////////////////////////////
+    public function get_produkHukum1()
+    {
+        // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
+        $this->db->where('tb_produk.id_unit', $this->session->userdata('id_unit'));
+
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->order_by('id_produk', 'DESC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
     public function get_produkHukum()
     {
         // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
         $this->db->where('tb_produk.id_unit', $this->session->userdata('id_unit'));
+        $this->db->where('validasi', 1);
+
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->order_by('id_produk', 'DESC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    public function get_produkHukumBlmTervalidasi()
+    {
+        // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
+        $this->db->where('validasi', 0);
+
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->order_by('id_produk', 'DESC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    // Function yang digunakan admin untuk mengakses data produk hukum di tiap unit
+    public function get_prohum($id_unit)
+    {
+        // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
+        $this->db->where('tb_produk.id_unit', $id_unit);
+        $this->db->where('validasi', 1);
+
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
+        $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->order_by('id_produk', 'DESC');
+        return $this->db->get('tb_produk')->result_array();
+    }
+
+    public function get_prohumBlmTervalidasi($id_unit)
+    {
+        // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
+        $this->db->where('tb_produk.id_unit', $id_unit);
+        $this->db->where('validasi', 0);
 
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
         $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
@@ -21,6 +73,7 @@ class M_admin extends CI_Model
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
         $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
+        $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
         return $this->db->get('tb_produk')->row_array();
     }
 
@@ -34,7 +87,7 @@ class M_admin extends CI_Model
         return $hasil;
     }
 
-    public function save_prohum()
+    public function save_prohum1()
     {
         $konfigurasi = array(
             'allowed_types' => 'pdf|doc|docx',
@@ -57,7 +110,43 @@ class M_admin extends CI_Model
             'status' => $_POST['status'],
             'keterangan' => $_POST['keterangan'],
             'file' => $fileName,
-            'id_unit' => $this->session->userdata('id_unit')
+            'id_unit' => $this->session->userdata('id_unit'),
+        ];
+
+        $this->db->insert('tb_produk', $data);
+    }
+
+    public function save_prohum()
+    {
+        $konfigurasi = array(
+            'allowed_types' => 'pdf|doc|docx',
+            'upload_path' => realpath('./upload/produk'),
+            'remove_spaces' => true,
+            'mod_mime_fix' => true,
+        );
+        $this->load->library('upload', $konfigurasi);
+        $this->upload->do_upload('produk');
+
+        // $fileName = url_title($_FILES['produk']['name'], '_', false);
+        $fileName = str_replace(" ", "_", $_FILES['produk']['name']);
+
+        if ($this->session->userdata('role_id') == 1) {
+            $valid = 1;
+        } else {
+            $valid = 0;
+        }
+
+        $data = [
+            'no' => $_POST['nomor'],
+            'id_kategori' => $_POST['id_kategori'],
+            'id_tentang' => $_POST['tentang'],
+            'judul' => $_POST['judul'],
+            'tahun' => $_POST['tahun'],
+            'status' => $_POST['status'],
+            'keterangan' => $_POST['keterangan'],
+            'file' => $fileName,
+            'id_unit' => $this->session->userdata('id_unit'),
+            'validasi' => $valid
         ];
 
         $this->db->insert('tb_produk', $data);
@@ -78,6 +167,15 @@ class M_admin extends CI_Model
 
         $this->db->where('id_produk', $_POST['id']);
         $this->db->update('tb_produk', $data);
+    }
+
+    public function validasi_prohum()
+    {
+        $ids = $_POST['id'];
+        $this->db->set('validasi', 1);
+
+        $this->db->where_in('id_produk', $ids);
+        $this->db->update('tb_produk');
     }
     ///////////////////////////////////// PRODUK HUKUM /////////////////////////////////////
 
@@ -282,7 +380,7 @@ class M_admin extends CI_Model
     public function get_kategori()
     {
         // Menampilkan data kategori dengan id_unit 1 dan kategori yang sesuai dengan unit yang membuatnya 
-        $this->db->where('tb_kategori.id_unit', 1);
+        // $this->db->where('tb_kategori.id_unit', 1);
         $this->db->or_where('tb_kategori.id_unit', $this->session->userdata('id_unit'));
 
         $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
@@ -323,7 +421,7 @@ class M_admin extends CI_Model
     public function get_tentang()
     {
         // Menampilkan tentang sesuai dengan unitnya dan data tentang dengan id_unit 1
-        $this->db->where('id_unit', 1);
+        // $this->db->where('id_unit', 1);
         $this->db->or_where('id_unit', $this->session->userdata('id_unit'));
 
         $this->db->order_by('id_tentang', 'DESC');

@@ -15,7 +15,6 @@
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <?= form_error('id[]'); ?>
 
                         <a href="<?= base_url("Export/pdf_prohum") ?>" data-toggle="modal" data-target="#modalExport" class="btn btn-primary" style="float: left">
                             <i class="fa fa-download"></i>
@@ -25,12 +24,13 @@
                             <i class="fa fa-plus"></i>
                             Add Produk Hukum
                         </a>
+
                         <ul class="nav nav-tabs bar_tabs" style="margin-top: 100px;" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="tervalidasi-tab" data-toggle="tab" href="#tervalidasi" role="tab" aria-controls="tervalidasi" aria-selected="true">Tervalidasi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="blmTervalidasi-tab" data-toggle="tab" href="#blmTervalidasi" role="tab" aria-controls="blmTervalidasi" aria-selected="false">Belum Tervalidasi</a>
+                                <a class="nav-link" id="tidakTervalidasi-tab" data-toggle="tab" href="#tidakTervalidasi" role="tab" aria-controls="tidakTervalidasi" aria-selected="false">Tidak Tervalidasi</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -83,9 +83,9 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="blmTervalidasi" role="tabpanel" aria-labelledby="blmTervalidasi-tab">
+                            <div class="tab-pane fade show active" id="tidakTervalidasi" role="tabpanel" aria-labelledby="tidakTervalidasi-tab">
                                 <div class="card-box table-responsive">
-                                    <form action="<?= site_url('Admin/' . $this->uri->segment('2') . '/' . $this->uri->segment('3')); ?>" method="POST">
+                                    <form action="<?= site_url('Admin/validasi_prohum'); ?>" method="POST">
                                         <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
                                             <?= $this->session->flashdata('message'); ?>
                                             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('prohum'); ?>"></div>
@@ -132,7 +132,6 @@
                                                 <?php } ?>
                                             </tbody>
                                         </table>
-
                                         <button type="submit" class="btn btn-primary mt-5"><i class="fa fa-check-square-o"></i> Validasi</button>
                                     </form>
                                 </div>

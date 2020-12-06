@@ -12,7 +12,7 @@ class Admin extends CI_Controller
     }
 
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
-    public function data_produkHukum()
+    public function data_produkHukum1()
     {
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Produk Hukum";
@@ -24,11 +24,74 @@ class Admin extends CI_Controller
         $this->load->view('templates/template_admin', $data);
         $this->load->view('templates/admin_footer', $data);
     }
+
+    public function data_produkHukum()
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_produkHukum();
+        $data['prohum_blmValid'] = $this->M_admin->get_produkHukumBlmTervalidasi();
+        $data['unit'] = $this->M_admin->get_unit();
+        $data['opt_tahun'] = $this->M_jdih->getTahun();
+        $data['content'] = "data_table/data_produkHukum";
+
+        $this->form_validation->set_rules('id[]', '', 'required', array(
+            'required' =>   '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                Pilih produk hukum yang akan di validasi.
+                            </div>'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            //mengirim post ke model
+            $this->M_admin->validasi_prohum();
+            $this->session->set_flashdata('prohum', 'Tervalidasi');
+            redirect('Admin/data_produkHukum');
+        }
+    }
+    public function data_prohum($id_unit)
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_prohum($id_unit);
+        $data['prohum_blmValid'] = $this->M_admin->get_prohumBlmTervalidasi($id_unit);
+        $data['unit'] = $this->M_admin->get_unit();
+        $data['opt_tahun'] = $this->M_jdih->getTahun();
+        $data['content'] = "data_table/data_produkHukum";
+
+        $this->form_validation->set_rules('id[]', '', 'required', array(
+            'required' =>   '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                Pilih produk hukum yang akan di validasi.
+                            </div>'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('templates/template_admin', $data);
+            $this->load->view('templates/admin_footer', $data);
+        } else {
+            //mengirim post ke model
+            $this->M_admin->validasi_prohum();
+            $this->session->set_flashdata('prohum', 'Tervalidasi');
+            redirect('Admin/data_prohum/' . $id_unit);
+        }
+    }
+
     public function input_produkHukum()
     {
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Input Data Produk Hukum";
         $data['kat'] = $this->M_admin->get_kategori();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_input/input_prohum";
 
         $this->form_validation->set_rules('nomor', 'Nomor', 'required|trim');
@@ -54,6 +117,7 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Input Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukumById($id);
+        $data['unit'] = $this->M_admin->get_unit();
         $data['kat'] = $this->M_admin->get_kategori();
         $data['content'] = "data_input/update_prohum";
 
@@ -99,12 +163,6 @@ class Admin extends CI_Controller
         }
     }
 
-    public function save_produkHukum()
-    {
-        print_r($_POST);
-        die;
-    }
-
     public function find_tentang()
     {
         $q = $this->input->post("tentang");
@@ -127,6 +185,26 @@ class Admin extends CI_Controller
             echo json_encode($data);
         }
     }
+
+    public function detail_produkHukum($id)
+    {
+        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Detail Produk Hukum";
+        $data['prohum'] = $this->M_admin->get_produkHukumById($id);
+        $data['unit'] = $this->M_admin->get_unit();
+        $data['content'] = "detail/detail_produkHukum";
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('templates/template_admin');
+        $this->load->view('templates/admin_footer');
+    }
+
+    public function delete_produkHukum($id)
+    {
+        $where = array('md5(id_produk)' => $id);
+        $this->M_admin->delete_data($where, 'tb_produk');
+        $this->session->set_flashdata('prohum', 'Deleted');
+        redirect('Admin/data_produkHukum');
+    }
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
 
     ////////////////////////////////////// ADMINISTRATOR //////////////////////////////////////
@@ -136,6 +214,7 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Administrator";
         $data['adm'] = $this->M_admin->get_admin();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_admin";
 
         $this->form_validation->set_rules('nama', 'Name', 'required|trim');
@@ -233,7 +312,7 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Operator";
         $data['opr'] = $this->M_admin->get_operator();
-        $data['unit'] = $this->db->get('tb_unit')->result_array();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_operator";
 
         $this->form_validation->set_rules('nama', 'Name', 'required|trim');
@@ -380,6 +459,7 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Jenis Produk";
         $data['jenis'] = $this->M_admin->get_jenis();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_jenisProduk";
 
         $jenis = $this->input->post('jenis');
@@ -436,6 +516,7 @@ class Admin extends CI_Controller
         $data['title'] = "Data Kategori";
         $data['kat'] = $this->M_admin->get_kategori();
         $data['jenis'] = $this->M_admin->get_jenis();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_kategori";
 
         $kategori = $this->input->post('kategori');
@@ -489,6 +570,7 @@ class Admin extends CI_Controller
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Tentang";
         $data['tentang'] = $this->M_admin->get_tentang();
+        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_tentang";
 
         $this->form_validation->set_rules('tentang', 'Tentang', 'required|trim');

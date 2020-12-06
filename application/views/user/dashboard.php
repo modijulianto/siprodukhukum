@@ -6,46 +6,51 @@
     });
 </script>
 
-<div class="col-lg-12 col-md-12">
-    <?php foreach ($status as $sts) { ?>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-book"></i></div>
-                <div class="count">
-                    <div class="col-md-12">
-                        <font size="5"><?= $sts['status']; ?></font>
-                    </div>
-                </div>
-                <h4 style="margin-left: 10px"><?= $sts['jumlah']; ?></h4>
+<?php foreach ($status as $sts) { ?>
+    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-book"></i></div>
+            <div class="count">
+                <font size="5">Produk Hukum <?= $sts['status']; ?></font>
             </div>
+            <h4 style="margin-left: 10px">Total : <?= $sts['jumlah']; ?></h4>
         </div>
-    <?php } ?>
-    <?php if ($this->session->userdata('role_id') == 1) { ?>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-user"></i></div>
-                <div class="count">
-                    <font size="5">Admin</font>
-                </div>
-                <h4 style="margin-left: 10px"><?= $jmlAdm; ?></h4>
+    </div>
+<?php } ?>
+<?php if ($akun['role_id'] == 1) { ?>
+    <div class="animated flipInY  col-lg-4 col-md-4 col-sm-6">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-user"></i></div>
+            <div class="count">
+                <font size="5">Admin</font>
             </div>
+            <h4 style="margin-left: 10px"><?= $jmlAdm; ?></h4>
         </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-users"></i></div>
-                <div class="count">
-                    <font size="5">Operator</font>
-                </div>
-                <h4 style="margin-left: 10px"><?= $jmlOpr; ?></h4>
+    </div>
+    <div class="animated flipInY col-lg-4 col-md-4 col-sm-6">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-users"></i></div>
+            <div class="count">
+                <font size="5">Operator</font>
             </div>
+            <h4 style="margin-left: 10px"><?= $jmlOpr; ?></h4>
         </div>
-    <?php } ?>
-</div>
+    </div>
+    <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-remove"></i></div>
+            <div class="count">
+                <font size="5">Belum Tervalidasi</font>
+            </div>
+            <h4 style="margin-left: 10px"><?= $blmValidasi; ?></h4>
+        </div>
+    </div>
+<?php } ?>
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Statistik Unit Produk Hukum</h2>
+                <h2>Statistik Produk Hukum Per Tahun</h2>
                 <div class="clearfix"></div>
             </div>
             <table class="highchart" data-graph-container-before="1" data-graph-type="column" style="display:none" data-graph-datalabels-enabled="1" data-graph-datalabels-color="white">
@@ -85,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($unit as $unit) { ?>
+                    <?php foreach ($chartUnit as $unit) { ?>
                         <tr>
                             <td><?= $unit['nama_unit']; ?></td>
                             <td><?= $unit['berlaku']; ?></td>

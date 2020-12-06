@@ -74,6 +74,17 @@ class M_dashboard extends CI_Model
         }
     }
 
+    public function getJmlProhumBlmValid()
+    {
+        $this->db->where('validasi', 0);
+        $query = $this->db->get('tb_produk');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
+
     //////////////////////// STATISTIK ////////////////////////
 
     // Statistik Per Jenis

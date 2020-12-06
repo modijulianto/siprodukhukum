@@ -7,6 +7,7 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_dashboard');
+        $this->load->model('M_admin');
         is_logged_in();
     }
 
@@ -19,12 +20,14 @@ class User extends CI_Controller
         $data['status'] = $this->M_dashboard->getStatus();
         $data['jmlAdm'] = $this->M_dashboard->getJmlAdmin();
         $data['jmlOpr'] = $this->M_dashboard->getJmlOperator();
+        $data['unit'] = $this->M_admin->get_unit();
+        $data['blmValidasi'] = $this->M_dashboard->getJmlProhumBlmValid();
 
         // Chart
         $data['katProduk'] = $this->M_dashboard->getKatProduk();
         $data['jenis'] = $this->M_dashboard->getJenis();
         $data['tahun'] = $this->M_dashboard->getTahun();
-        $data['unit'] = $this->M_dashboard->getUnit();
+        $data['chartUnit'] = $this->M_dashboard->getUnit();
 
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/template_admin', $data);
@@ -37,6 +40,7 @@ class User extends CI_Controller
         $this->db->join('user_role', 'user_role.id=tb_user.role_id');
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['content'] = 'user/my_profile';
+        $data['unit'] = $this->M_admin->get_unit();
 
         $this->form_validation->set_rules('nama', 'Full Name', 'required|trim');
 
@@ -106,6 +110,7 @@ class User extends CI_Controller
         $data['meta'] = "Dashboard Akamana Coffee";
         $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['content'] = 'user/change_password';
+        $data['unit'] = $this->M_admin->get_unit();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[6]|matches[new_password2]');

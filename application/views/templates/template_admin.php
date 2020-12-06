@@ -34,8 +34,16 @@
                                 <li><a href="<?= site_url("Admin/data_admin") ?>"><i class="fa fa-male"></i> DATA ADMIN </a></li>
                                 <li><a href="<?= site_url("Admin/data_operator") ?>"><i class="fa fa-users"></i> DATA OPERATOR </a></li>
                                 <li><a href="<?= site_url("Admin/data_unit") ?>"><i class="fa fa-institution"></i> DATA UNIT </a></li>
+                                <li><a><i class="fa fa-book"></i> PRODUK HUKUM <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <?php foreach ($unit as $val) { ?>
+                                            <li><a href="<?= site_url("Admin/data_prohum/" . $val['id_unit']) ?>"><?= $val['nama_unit']; ?> </a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                            <?php } else { ?>
+                                <li><a href="<?= site_url("Admin/data_produkhukum") ?>"><i class="fa fa-book"></i> DATA PRODUK HUKUM </a></li>
                             <?php } ?>
-                            <li><a href="<?= site_url("Admin/data_produkhukum") ?>"><i class="fa fa-book"></i> DATA PRODUK HUKUM </a></li>
                             <li><a><i class="fa fa-th-list"></i> JENIS & KATEGORI <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="<?= site_url("Admin/data_jenisProduk") ?>">Jenis Produk </a></li>
