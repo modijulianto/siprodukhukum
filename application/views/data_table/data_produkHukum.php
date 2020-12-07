@@ -94,9 +94,11 @@
                                             <br><br><br>
                                             <thead>
                                                 <tr>
-                                                    <th>
-                                                        <center><i class="fa fa-check-square-o"></i></center>
-                                                    </th>
+                                                    <?php if ($akun['role_id'] == 1) { ?>
+                                                        <th>
+                                                            <center><i class="fa fa-check-square-o"></i></center>
+                                                        </th>
+                                                    <?php } ?>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Judul</th>
                                                     <th class="text-center">Tentang</th>
@@ -111,9 +113,11 @@
                                             <tbody>
                                                 <?php foreach ($prohum_blmValid as $val) { ?>
                                                     <tr>
-                                                        <td class="a-center ">
-                                                            <input type="checkbox" class="flat" name="id[]" value="<?= $val['id_produk']; ?>">
-                                                        </td>
+                                                        <?php if ($akun['role_id'] == 1) { ?>
+                                                            <td class="a-center ">
+                                                                <input type="checkbox" class="flat" name="id[]" value="<?= $val['id_produk']; ?>">
+                                                            </td>
+                                                        <?php } ?>
                                                         <td><?= $val['no']; ?></td>
                                                         <td><?= $val['judul']; ?></td>
                                                         <td><?= (str_word_count($val['nama_tentang'])) > 10 ? substr($val['nama_tentang'], 0, 100) . " [..]" : $val['nama_tentang']; ?></td>
@@ -132,8 +136,9 @@
                                                 <?php } ?>
                                             </tbody>
                                         </table>
-
-                                        <button type="submit" class="btn btn-primary mt-5"><i class="fa fa-check-square-o"></i> Validasi</button>
+                                        <?php if ($akun['role_id'] == 1) { ?>
+                                            <button type="submit" class="btn btn-primary mt-5"><i class="fa fa-check-square-o"></i> Validasi</button>
+                                        <?php } ?>
                                     </form>
                                 </div>
                             </div>

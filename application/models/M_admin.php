@@ -33,6 +33,12 @@ class M_admin extends CI_Model
         // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
         $this->db->where('validasi', 0);
 
+        // Jika yang login bukan admin, maka hanya get data dari unit nya saja
+        if ($this->session->userdata('role_id') != 1) {
+            $id_unit = $this->session->userdata('id_unit');
+            $this->db->where('tb_produk.id_unit', $id_unit);
+        }
+
         $this->db->join('tb_unit', 'tb_unit.id_unit=tb_produk.id_unit');
         $this->db->join('tb_tentang', 'tb_tentang.id_tentang=tb_produk.id_tentang');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.id_kategori');
