@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2020 at 03:28 AM
+-- Generation Time: Dec 08, 2020 at 03:47 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -176,7 +176,8 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `id_unit`, `is_active`, `date_created`) VALUES
 (4, 'putu modi', 'putumodi@gmail.com', 'Logo_Undiksha.png', '$2y$10$0UvBNzBycztWZWpP/LxRXOcerSL9fijpSP6iVrMg9zkyZg4TSlRdm', 2, 5, 1, 1595435152),
 (5, 'modi', 'modi@gmail.com', 'logo.png', '$2y$10$0UvBNzBycztWZWpP/LxRXOcerSL9fijpSP6iVrMg9zkyZg4TSlRdm', 2, 6, 1, 1596118041),
-(18, 'Putu Modi Julianto', 'putumodi25@gmail.com', 'Leo_Sign_Compatibility__Whats_the_Perfect_Leo_Love_Match_-_Astrology_Bay.jpeg', '$2y$10$0UvBNzBycztWZWpP/LxRXOcerSL9fijpSP6iVrMg9zkyZg4TSlRdm', 1, 1, 1, 1592921943);
+(18, 'Putu Modi Julianto', 'putumodi25@gmail.com', 'Leo_Sign_Compatibility__Whats_the_Perfect_Leo_Love_Match_-_Astrology_Bay.jpeg', '$2y$10$0UvBNzBycztWZWpP/LxRXOcerSL9fijpSP6iVrMg9zkyZg4TSlRdm', 1, 1, 1, 1592921943),
+(21, 'Pak Setemen', 'setemen@undiksha.ac.id', 'default.jpeg', '$2y$10$A7R9yU5fhutK2nOiBCscKOpRAcKNA1fVo/rSUU43pKAtJfiUU0usS', 1, 1, 1, 1607395587);
 
 -- --------------------------------------------------------
 
@@ -300,7 +301,7 @@ ALTER TABLE `tb_unit`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_role`

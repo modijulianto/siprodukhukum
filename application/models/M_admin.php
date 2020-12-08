@@ -230,7 +230,7 @@ class M_admin extends CI_Model
         $data = array(
             'name' => $_POST['nama'],
             'email' => $_POST['email'],
-            'password' => $_POST['password'],
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'role_id' => 1,
             'id_unit' => 1,
             'is_active' => 1,
@@ -293,7 +293,7 @@ class M_admin extends CI_Model
         $data = array(
             'name' => $_POST['nama'],
             'email' => $_POST['email'],
-            'password' => $_POST['password'],
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'role_id' => 2,
             'id_unit' => $_POST['id_unit'],
             'is_active' => 1,
