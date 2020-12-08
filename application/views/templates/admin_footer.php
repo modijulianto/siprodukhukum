@@ -8,8 +8,6 @@
 <script src="<?= base_url("assets/vendors/fastclick/lib/fastclick.js") ?>"></script>
 <!-- NProgress -->
 <script src="<?= base_url("assets/vendors/nprogress/nprogress.js") ?>"></script>
-<!-- Chart.js -->
-<script src="<?= base_url("assets/vendors/Chart.js/dist/Chart.min.js") ?>"></script>
 <!-- gauge.js -->
 <script src="<?= base_url("assets/vendors/gauge.js/dist/gauge.min.js") ?>"></script>
 <!-- bootstrap-progressbar -->
