@@ -14,7 +14,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// PRODUK HUKUM //////////////////////////////////////
     public function data_produkHukum1()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukum();
         $data['unit'] = $this->M_admin->get_unit();
@@ -27,7 +27,7 @@ class Admin extends CI_Controller
 
     public function data_produkHukum()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukum();
         $data['prohum_blmValid'] = $this->M_admin->get_produkHukumBlmTervalidasi();
@@ -57,7 +57,7 @@ class Admin extends CI_Controller
     }
     public function data_prohum($id_unit)
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_prohum($id_unit);
         $data['prohum_blmValid'] = $this->M_admin->get_prohumBlmTervalidasi($id_unit);
@@ -88,7 +88,7 @@ class Admin extends CI_Controller
 
     public function input_produkHukum()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Input Data Produk Hukum";
         $data['kat'] = $this->M_admin->get_kategori();
         $data['unit'] = $this->M_admin->get_unit();
@@ -114,7 +114,7 @@ class Admin extends CI_Controller
 
     public function update_produkHukum($id)
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Input Data Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukumById($id);
         $data['unit'] = $this->M_admin->get_unit();
@@ -188,7 +188,7 @@ class Admin extends CI_Controller
 
     public function detail_produkHukum($id)
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Detail Produk Hukum";
         $data['prohum'] = $this->M_admin->get_produkHukumById($id);
         $data['unit'] = $this->M_admin->get_unit();
@@ -211,7 +211,7 @@ class Admin extends CI_Controller
     public function data_admin()
     {
         is_admin();
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Administrator";
         $data['adm'] = $this->M_admin->get_admin();
         $data['unit'] = $this->M_admin->get_unit();
@@ -283,7 +283,7 @@ class Admin extends CI_Controller
     public function delete_admin($id)
     {
         is_admin();
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
 
         if (md5($data['akun']['id']) != $id) {
             $this->db->where('md5(id)', $id);
@@ -309,7 +309,7 @@ class Admin extends CI_Controller
     public function data_operator()
     {
         is_admin();
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Operator";
         $data['opr'] = $this->M_admin->get_operator();
         $data['unit'] = $this->M_admin->get_unit();
@@ -401,7 +401,7 @@ class Admin extends CI_Controller
     public function data_unit()
     {
         is_admin();
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Unit";
         $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_unit";
@@ -409,6 +409,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('unit', 'Unit', 'required|trim|is_unique[tb_unit.nama_unit]', [
             'is_unique' => 'This unit is already registered!'
         ]);
+        $this->form_validation->set_rules('singkatan', 'singkatan', 'required|trim');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
             $this->load->view('templates/template_admin', $data);
@@ -429,9 +430,7 @@ class Admin extends CI_Controller
     {
         is_admin();
         $result['error'] = TRUE;
-        $this->form_validation->set_rules('unit', 'Unit', 'required|trim|is_unique[tb_unit.nama_unit]', [
-            'is_unique' => 'This unit is already registered!'
-        ]);
+        $this->form_validation->set_rules('unit', 'Unit', 'required|trim');
         if ($this->form_validation->run() == FALSE) {
             $this->data_unit();
         } else {
@@ -456,7 +455,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// JENIS PRODUK //////////////////////////////////////
     public function data_jenisProduk()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Jenis Produk";
         $data['jenis'] = $this->M_admin->get_jenis();
         $data['unit'] = $this->M_admin->get_unit();
@@ -512,7 +511,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// KATEGORI //////////////////////////////////////
     public function data_kategori()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Kategori";
         $data['kat'] = $this->M_admin->get_kategori();
         $data['jenis'] = $this->M_admin->get_jenis();
@@ -567,7 +566,7 @@ class Admin extends CI_Controller
     ////////////////////////////////////// TENTANG //////////////////////////////////////
     public function data_tentang()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Tentang";
         $data['tentang'] = $this->M_admin->get_tentang();
         $data['unit'] = $this->M_admin->get_unit();

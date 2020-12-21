@@ -39,6 +39,7 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Nama Unit</th>
+                                        <th class="text-center">Singkat</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -51,6 +52,7 @@
                                                 <center><?= $i++; ?></center>
                                             </td>
                                             <td><?= $val['nama_unit']; ?></td>
+                                            <td><?= $val['nama_singkat']; ?></td>
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalUnit" id="tombolUbahUnit" class="btn btn-success btn-sm tombolUbahUnit" data-id="<?= $val['id_unit']; ?>"><i class="fa fa-pencil"></i></button>
@@ -90,6 +92,13 @@
                             <td><?php echo form_error('unit'); ?></td>
                         </div>
                     </div>
+                    <div class="row form-group">
+                        <label class="col-form-label col-md-2 col-sm-2">Singkatan Unit<font color="red">*</font></label>
+                        <div class="col-md col-sm">
+                            <input type="text" class="form-control" name="singkatan" id="singkatan" placeholder="Masukkan nama singkatan" required="required" value="<?= set_value('singkatan'); ?>" />
+                            <td><?php echo form_error('singkatan'); ?></td>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
@@ -119,6 +128,7 @@
             success: function(data) {
                 $('#id').val(data.id_unit);
                 $('#unit').val(data.nama_unit);
+                $('#singkatan').val(data.nama_singkat);
             }
         });
     });

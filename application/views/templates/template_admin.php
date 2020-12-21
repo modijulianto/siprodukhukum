@@ -19,6 +19,9 @@
                         <span>Welcome,</span>
                         <h2><?= $akun['name'] ?></h2>
                         <span><?= ($akun['role_id'] == 1) ? 'Administrator' : 'Operator' ?></span>
+                        <?php if ($akun['role_id'] != 1) { ?>
+                            <span><?= $akun['nama_singkat'] ?></span>
+                        <?php } ?>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -41,16 +44,17 @@
                                         <?php } ?>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-th-list"></i> MASTER DATA <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="<?= site_url("Admin/data_jenisProduk") ?>">Jenis Produk </a></li>
+                                        <li><a href="<?= site_url("Admin/data_kategori") ?>">Kategori Produk </a></li>
+                                        <li><a href="<?= site_url("Admin/data_tentang") ?>">Tentang </a></li>
+                                    </ul>
+                                </li>
                             <?php } else { ?>
                                 <li><a href="<?= site_url("Admin/data_produkhukum") ?>"><i class="fa fa-book"></i> DATA PRODUK HUKUM </a></li>
+                                <li><a href="<?= site_url("Admin/data_tentang") ?>"><i class="fa fa-info"></i> Tentang </a></li>
                             <?php } ?>
-                            <li><a><i class="fa fa-th-list"></i> JENIS & KATEGORI <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="<?= site_url("Admin/data_jenisProduk") ?>">Jenis Produk </a></li>
-                                    <li><a href="<?= site_url("Admin/data_kategori") ?>">Kategori Produk </a></li>
-                                    <li><a href="<?= site_url("Admin/data_tentang") ?>">Tentang </a></li>
-                                </ul>
-                            </li>
                             <li><a href="<?= site_url("User/my_profile") ?>"><i class="fa fa-user"></i> MY PROFILE </a></li>
                             <li><a href="<?= site_url("User/changePassword") ?>"><i class="fa fa-key"></i> CHANGE PASSWORD </a></li>
                         </ul>

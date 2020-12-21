@@ -13,7 +13,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Dasboard";
         $data['meta'] = "Dasboard";
         $data['content'] = "user/dashboard";
@@ -38,7 +38,7 @@ class User extends CI_Controller
     {
         $data['title'] = "My Profile";
         $this->db->join('user_role', 'user_role.id=tb_user.role_id');
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['content'] = 'user/my_profile';
         $data['unit'] = $this->M_admin->get_unit();
 
@@ -90,7 +90,7 @@ class User extends CI_Controller
 
     function deletePhoto()
     {
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
 
         $old_image = $data['akun']['image'];
         if ($old_image != 'default.jpeg') {
@@ -108,7 +108,7 @@ class User extends CI_Controller
     {
         $data['title'] = "Change Password";
         $data['meta'] = "Dashboard Akamana Coffee";
-        $data['akun'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['akun'] = $this->M_admin->getAkun();
         $data['content'] = 'user/change_password';
         $data['unit'] = $this->M_admin->get_unit();
 

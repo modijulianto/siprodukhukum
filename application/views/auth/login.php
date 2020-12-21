@@ -30,9 +30,10 @@
 				<div class="login100-form-title">
 					<center><button class="login100-form-btn" type="submit">Login</button></center>
 					<hr>
-					<center><a class="txt1" href="<?= base_url() ?>auth/registration">
+					<center>
+						<!-- <a class="txt1" href="<?= base_url() ?>auth/registration">
 							Create an account?
-						</a>&ensp;
+						</a>&ensp; -->
 						<a class="txt1" href="<?= base_url() ?>auth/forgotPassword">
 							Forgot Password?
 						</a>

@@ -1,6 +1,12 @@
 <?php
 class M_admin extends CI_Model
 {
+    public function getAkun()
+    {
+        $this->db->join('tb_unit', 'tb_unit.id_unit=tb_user.id_unit');
+        $this->db->where('email', $this->session->userdata('email'));
+        return $this->db->get('tb_user')->row_array();
+    }
 
     ///////////////////////////////////// PRODUK HUKUM /////////////////////////////////////
     public function get_produkHukum1()
@@ -333,7 +339,9 @@ class M_admin extends CI_Model
     function save_unit()
     {
         $unit = $this->input->post('unit');
+        $singkatan = $this->input->post('singkatan');
         $this->db->set('nama_unit', $unit);
+        $this->db->set('nama_singkat', $singkatan);
         $this->db->insert('tb_unit');
     }
 
@@ -341,7 +349,9 @@ class M_admin extends CI_Model
     {
         $id = $this->input->post('id');
         $unit = $this->input->post('unit');
+        $singkatan = $this->input->post('singkatan');
         $this->db->set('nama_unit', $unit);
+        $this->db->set('nama_singkat', $singkatan);
         $this->db->where('id_unit', $id);
         $this->db->update('tb_unit');
     }
