@@ -23,7 +23,7 @@ $(function () {
 	$(".tombolTambahOperator").on("click", function () {
 		$("#judulModal").html("Input Data Operator");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_operator");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Operator");
 		// alert($('.modal-body form').attr('action'));
 
 		// show form input
@@ -43,7 +43,7 @@ $(function () {
 	$(".tombolTambahUnit").on("click", function () {
 		$("#judulModal").html("Input Data Unit");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_unit");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Unit");
 
 		$("#id").val("");
 		$("#unit").val("");
@@ -54,7 +54,7 @@ $(function () {
 	$(".tombolTambahJenis").on("click", function () {
 		$("#judulModal").html("Input Data Jenis Produk");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_jenisProduk");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Master_data");
 
 		$("#id").val("");
 		$("#jenis").val("");
@@ -65,7 +65,7 @@ $(function () {
 	$(".tombolTambahKategori").on("click", function () {
 		$("#judulModal").html("Input Data Kategori");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_kategori");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Master_data/data_kategori");
 
 		$("#id").val("");
 		$("#kategori").val("");
@@ -76,7 +76,7 @@ $(function () {
 	$(".tombolTambahTentang").on("click", function () {
 		$("#judulModal").html("Input Data Tentang");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_tentang");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Tentang");
 
 		$("#id").val("");
 		$("#tentang").val("");

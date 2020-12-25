@@ -86,7 +86,7 @@
         allowClear: true,
         placeholder: 'masukkan tentang',
         ajax: {
-            url: "<?php echo base_url(); ?>Admin/find_tentang",
+            url: "<?php echo base_url(); ?>Produk_hukum/find_tentang",
             type: "post",
             dataType: 'json',
             delay: 250,

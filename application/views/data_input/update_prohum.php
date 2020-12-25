@@ -16,7 +16,7 @@
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form action="<?= site_url('Admin/update_produkHukum/' . md5($prohum['id_produk'])) ?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?= site_url('Produk_hukum/update_produkHukum/' . md5($prohum['id_produk'])) ?>" method="POST" enctype="multipart/form-data">
                             <input type="hidden" id="id" name="id" value="<?= $prohum['id_produk']; ?>">
                             <div class="row form-group">
                                 <label class="col-form-label col-md-2 col-sm-2">Nomor<font color="red">*</font></label>
@@ -121,7 +121,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('Admin/add_tentangBaru'); ?>" id="form-tentangBaru" method="POST" class="form-tentang form-tentangBaru">
+                <form action="<?= base_url('Produk_hukum/add_tentangBaru'); ?>" id="form-tentangBaru" method="POST" class="form-tentang form-tentangBaru">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
                         <div class="col-md col-sm">

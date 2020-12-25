@@ -50,7 +50,7 @@
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalKategori" id="tombolUbahKategori" class="btn btn-success btn-sm tombolUbahKategori" data-id="<?= $val['id_kategori']; ?>"><i class="fa fa-pencil"></i></button>
-                                                    <button href="<?= site_url('Admin/delete_kategori/' . md5($val['id_kategori'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                    <button href="<?= site_url('Master_data/delete_kategori/' . md5($val['id_kategori'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -77,7 +77,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_kategori') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= site_url('Master_data/data_kategori') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group row">
                         <label class="control-label col-md-2 col-sm-2">Jenis Produk</label>
@@ -111,12 +111,12 @@
     $('.tombolUbahKategori').on('click', function() {
         $('#judulModal').html('Update Data Kategori');
         $('.modal-footer button[type=submit]').html('Update Data');
-        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_kategori') ?>');
+        $('.modal-body form').attr('action', '<?= base_url('Master_data/saveUpdate_kategori') ?>');
 
         const id = $(this).data('id');
 
         $.ajax({
-            url: '<?= base_url('Admin/update_kategori') ?>',
+            url: '<?= base_url('Master_data/update_kategori') ?>',
             data: {
                 id: id
             },

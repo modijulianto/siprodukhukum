@@ -62,7 +62,7 @@
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalOperator" id="tombolUbahOperator" class="btn btn-success btn-sm tombolUbahOperator" data-id="<?= $val['id']; ?>"><i class="fa fa-pencil"></i></button>
-                                                    <a href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>"><button href="<?= site_url('Admin/delete_operator/' . md5($val['id'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
+                                                    <a href="<?= site_url('Operator/delete_operator/' . md5($val['id'])) ?>"><button href="<?= site_url('Operator/delete_operator/' . md5($val['id'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
                                                 </center>
                                             </td>
                                         </tr>
@@ -89,7 +89,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_operator') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= site_url('Operator') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Name<font color="red">*</font></label>
@@ -145,7 +145,7 @@
     $('.tombolUbahOperator').on('click', function() {
         $('#judulModal').html('Update Data Operator');
         $('.modal-footer button[type=submit]').html('Update Data');
-        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_operator') ?>');
+        $('.modal-body form').attr('action', '<?= base_url('Operator/saveUpdate_operator') ?>');
 
 
         // hide form input
@@ -157,7 +157,7 @@
         const id = $(this).data('id');
 
         $.ajax({
-            url: '<?= base_url('Admin/update_operator') ?>',
+            url: '<?= base_url('Operator/update_operator') ?>',
             data: {
                 id: id
             },

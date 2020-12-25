@@ -21,7 +21,7 @@
                             <i class="fa fa-download"></i>
                             Export
                         </a>
-                        <a href="<?= base_url('Admin/input_produkHukum'); ?>" class="btn btn-primary" style="float: right">
+                        <a href="<?= base_url('Produk_hukum/input_produkHukum'); ?>" class="btn btn-primary" style="float: right">
                             <i class="fa fa-plus"></i>
                             Add Produk Hukum
                         </a>
@@ -72,9 +72,9 @@
                                                     <td><?= $val['status']; ?></td>
                                                     <td>
                                                         <center>
-                                                            <a href="<?= site_url('Admin/detail_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-                                                            <a href="<?= site_url('Admin/update_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                                                            <a href="<?= site_url('Admin/delete_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fa fa-trash"></i></a>
+                                                            <a href="<?= site_url('Produk_hukum/detail_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                                            <a href="<?= site_url('Produk_hukum/update_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                                            <a href="<?= site_url('Produk_hukum/delete_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fa fa-trash"></i></a>
                                                         </center>
                                                     </td>
                                                 </tr>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="tab-pane fade" id="blmTervalidasi" role="tabpanel" aria-labelledby="blmTervalidasi-tab">
                                 <div class="card-box table-responsive">
-                                    <form action="<?= site_url('Admin/' . $this->uri->segment('2') . '/' . $this->uri->segment('3')); ?>" method="POST">
+                                    <form action="<?= site_url('Produk_hukum/' . $this->uri->segment('2') . '/' . $this->uri->segment('3')); ?>" method="POST">
                                         <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
                                             <?= $this->session->flashdata('message'); ?>
                                             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('prohum'); ?>"></div>
@@ -127,9 +127,9 @@
                                                         <td><?= $val['status']; ?></td>
                                                         <td>
                                                             <center>
-                                                                <a href="<?= site_url('Admin/detail_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-                                                                <a href="<?= site_url('Admin/update_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                                                                <a href="<?= site_url('Admin/delete_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fa fa-trash"></i></a>
+                                                                <a href="<?= site_url('Produk_hukum/detail_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                                                <a href="<?= site_url('Produk_hukum/update_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                                                <a href="<?= site_url('Produk_hukum/delete_produkHukum/' . md5($val['id_produk'])) ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fa fa-trash"></i></a>
                                                             </center>
                                                         </td>
                                                     </tr>
@@ -232,7 +232,7 @@
             })
         })
 
-        // PENGELUARAN
+
         $('#excelProhum').on('click', function() {
             $('.modal-body form').attr('action', '<?= site_url('Export/excel_prohum') ?>');
         });

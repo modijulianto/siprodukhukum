@@ -46,7 +46,7 @@
                                                 <center>
                                                     <!-- <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button> -->
                                                     <button type="button" name="ubah" data-toggle="modal" data-target=".bs-example-modal-lg" id="tombolUbahTentang" class="btn btn-success btn-sm tombolUbahTentang" data-id="<?= $val['id_tentang']; ?>"><i class="fa fa-pencil"></i></button>
-                                                    <button href="<?= site_url('Admin/delete_tentang/' . md5($val['id_tentang'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                    <button href="<?= site_url('Tentang/delete_tentang/' . md5($val['id_tentang'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -72,7 +72,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_tentang') ?>" method="POST">
+                <form action="<?= site_url('Tentang') ?>" method="POST">
                     <input type="hidden" id="id" name="id">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
@@ -98,12 +98,12 @@
     $('.tombolUbahTentang').on('click', function() {
         $('#judulModal').html('Update Data Tentang');
         $('.modal-footer button[type=submit]').html('Update Data');
-        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_tentang') ?>');
+        $('.modal-body form').attr('action', '<?= base_url('Tentang/saveUpdate_tentang') ?>');
 
         const id = $(this).data('id');
 
         $.ajax({
-            url: '<?= base_url('Admin/update_tentang') ?>',
+            url: '<?= base_url('Tentang/update_tentang') ?>',
             data: {
                 id: id
             },

@@ -56,7 +56,7 @@
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalUnit" id="tombolUbahUnit" class="btn btn-success btn-sm tombolUbahUnit" data-id="<?= $val['id_unit']; ?>"><i class="fa fa-pencil"></i></button>
-                                                    <button href="<?= site_url('Admin/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
+                                                    <button href="<?= site_url('Unit/delete_unit/' . md5($val['id_unit'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -83,7 +83,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_unit') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= site_url('Unit') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Unit<font color="red">*</font></label>
@@ -114,12 +114,12 @@
     $('.tombolUbahUnit').on('click', function() {
         $('#judulModal').html('Update Data Unit');
         $('.modal-footer button[type=submit]').html('Update Data');
-        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_unit') ?>');
+        $('.modal-body form').attr('action', '<?= base_url('Unit/saveUpdate_unit') ?>');
 
         const id = $(this).data('id');
 
         $.ajax({
-            url: '<?= base_url('Admin/update_unit') ?>',
+            url: '<?= base_url('Unit/update_unit') ?>',
             data: {
                 id: id
             },

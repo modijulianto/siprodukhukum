@@ -48,7 +48,7 @@
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalJenis" id="tombolUbahJenis" class="btn btn-success btn-sm tombolUbahJenis" data-id="<?= $val['id_jenis']; ?>"><i class="fa fa-pencil"></i></button>
-                                                    <a href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>"><button href="<?= site_url('Admin/delete_jenis/' . md5($val['id_jenis'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
+                                                    <a href="<?= site_url('Master_data/delete_jenis/' . md5($val['id_jenis'])) ?>"><button href="<?= site_url('Master_data/delete_jenis/' . md5($val['id_jenis'])) ?>" type="button" class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></button></a>
                                                 </center>
                                             </td>
                                         </tr>
@@ -75,7 +75,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_jenisProduk') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= site_url('Master_data') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Jenis<font color="red">*</font></label>
@@ -99,12 +99,12 @@
     $('.tombolUbahJenis').on('click', function() {
         $('#judulModal').html('Update Data Jenis Produk');
         $('.modal-footer button[type=submit]').html('Update Data');
-        $('.modal-body form').attr('action', '<?= base_url('Admin/saveUpdate_jenis') ?>');
+        $('.modal-body form').attr('action', '<?= base_url('Master_data/saveUpdate_jenis') ?>');
 
         const id = $(this).data('id');
 
         $.ajax({
-            url: '<?= base_url('Admin/update_jenis') ?>',
+            url: '<?= base_url('Master_data/update_jenis') ?>',
             data: {
                 id: id
             },
