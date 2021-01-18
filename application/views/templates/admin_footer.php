@@ -41,6 +41,8 @@
 
 <!-- jQuery custom content scroller -->
 <script src="<?= base_url("assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js") ?>"></script>
+<!-- Switchery -->
+<script src="<?= base_url("assets/vendors/switchery/dist/switchery.min.js"); ?>"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="<?= base_url("assets/build/js/custom.min.js") ?>"></script>
@@ -69,7 +71,6 @@
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/dist/myscript.js") ?>"></script>
 
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script.js") ?>"></script>
-<script language="JavaScript" type="text/javascript" src="<?= base_url("assets/build/js/script-export.js") ?>"></script>
 
 <script language="JavaScript" type="text/javascript" src="<?= base_url("assets/vendors/select2/dist/js/select2.min.js") ?>"></script>
 

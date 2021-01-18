@@ -18,7 +18,6 @@ class Master_data extends CI_Controller
         $data['akun'] = $this->M_admin->getAkun();
         $data['title'] = "Data Jenis Produk";
         $data['jenis'] = $this->M_admin->get_jenis();
-        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_jenisProduk";
 
         $jenis = $this->input->post('jenis');
@@ -75,7 +74,6 @@ class Master_data extends CI_Controller
         $data['title'] = "Data Kategori";
         $data['kat'] = $this->M_admin->get_kategori();
         $data['jenis'] = $this->M_admin->get_jenis();
-        $data['unit'] = $this->M_admin->get_unit();
         $data['content'] = "data_table/data_kategori";
 
         $kategori = $this->input->post('kategori');

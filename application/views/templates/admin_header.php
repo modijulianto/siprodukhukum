@@ -38,6 +38,8 @@
     <link href="<?= base_url("assets/vendors/bootstrap-daterangepicker/daterangepicker.css") ?>" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="<?= base_url("assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css") ?>" rel="stylesheet" />
+    <!-- Switchery -->
+    <link href="<?= base_url("assets/vendors/switchery/dist/switchery.min.css"); ?>" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url("assets/build/css/custom.min.css") ?>" rel="stylesheet">

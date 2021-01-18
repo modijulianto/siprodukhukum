@@ -25,7 +25,8 @@ class Operator extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[tb_user.email]', [
             'is_unique' => 'This email is already registered!'
         ]);
-        $this->form_validation->set_rules('password', '', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|matches[retypePassword]');
+        $this->form_validation->set_rules('retypePassword', 'Retype Password', 'required|min_length[6]|matches[password]');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
             $this->load->view('templates/template_admin', $data);
@@ -35,6 +36,22 @@ class Operator extends CI_Controller
             $this->session->set_flashdata('operator', 'Added');
             redirect('Operator');
         }
+    }
+
+    public function activate()
+    {
+        $data['active'] = $this->db->get_where('tb_user', ['id' => $_POST['id']])->row_array();
+        $is_active = $data['active']['is_active'];
+
+        if ($is_active == 1) {
+            $this->db->set('is_active', 0);
+        } else {
+            $this->db->set('is_active', 1);
+        }
+
+
+        $this->db->where('id', $_POST['id']);
+        $this->db->update('tb_user');
     }
 
     public function update_operator()
@@ -47,7 +64,6 @@ class Operator extends CI_Controller
         $result['error'] = TRUE;
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', array('required' => '<p style="color: red">Nama owner harus diisi.</p>'));
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        // $this->form_validation->set_rules('password', '', 'required', array('required' => '<p style="color: red">Password harus diisi.</p>'));
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {

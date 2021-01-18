@@ -12,7 +12,7 @@ class Admin extends CI_Controller
     }
 
     ////////////////////////////////////// ADMINISTRATOR //////////////////////////////////////
-    public function data_admin()
+    public function index()
     {
         is_admin();
         $data['akun'] = $this->M_admin->getAkun();
@@ -25,7 +25,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[tb_user.email]', [
             'is_unique' => 'This email is already registered!'
         ]);
-        $this->form_validation->set_rules('password', '', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|matches[retypePassword]');
+        $this->form_validation->set_rules('retypePassword', 'Retype Password', 'required|min_length[6]|matches[password]');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
             $this->load->view('templates/template_admin', $data);
@@ -33,7 +34,7 @@ class Admin extends CI_Controller
         } else {
             $this->M_admin->save_admin($_POST);
             $this->session->set_flashdata('admin', 'Added');
-            redirect('Admin/data_admin');
+            redirect('Admin');
         }
     }
 
@@ -48,9 +49,8 @@ class Admin extends CI_Controller
         $result['error'] = TRUE;
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', array('required' => '<p style="color: red">Nama owner harus diisi.</p>'));
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        // $this->form_validation->set_rules('password', 'Password', 'required', array('required' => '<p style="color: red">Password harus diisi.</p>'));
         if ($this->form_validation->run() == FALSE) {
-            $this->data_admin();
+            $this->index();
         } else {
             $upload_image = $_FILES['admin']['name'];
 
@@ -80,7 +80,7 @@ class Admin extends CI_Controller
             //mengirim post ke model
             $this->M_admin->update_admin($_POST);
             $this->session->set_flashdata('admin', 'Updated');
-            redirect('Admin/data_admin');
+            redirect('Admin');
         }
     }
 
@@ -104,7 +104,7 @@ class Admin extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><b>Oops!</b> you can\'t delete your own account!</div>');
         }
-        redirect('Admin/data_admin');
+        redirect('Admin');
     }
     ////////////////////////////////////// END ADMINISTRATOR //////////////////////////////////////
 }

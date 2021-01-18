@@ -42,6 +42,7 @@
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Foto</th>
                                         <th class="text-center">Unit</th>
+                                        <th class="text-center">Aktif</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -59,6 +60,9 @@
                                                 <figure img src="<?= base_url("upload/" . $val['image']) ?>" class="gal"><img src="<?= base_url("upload/" . $val['image']) ?>" alt="" width="50px"></figure>
                                             </td>
                                             <td><?= $val['nama_unit']; ?></td>
+                                            <td>
+                                                <center><input type="checkbox" class="js-switch activate" data-id="<?= $val['id']; ?>" <?= ($val['is_active'] == 1) ? 'checked' : ''; ?> /></center>
+                                            </td>
                                             <td>
                                                 <center>
                                                     <button type="button" name="ubah" data-toggle="modal" data-target="#modalOperator" id="tombolUbahOperator" class="btn btn-success btn-sm tombolUbahOperator" data-id="<?= $val['id']; ?>"><i class="fa fa-pencil"></i></button>
@@ -127,9 +131,17 @@
                     <div class="row form-group">
                         <label id="labelPasswordOperator" class="col-form-label col-md-2 col-sm-2">Password<font color="red">*</font></label>
                         <div class="col-md col-sm">
-                            <input class="form-control" type="password" name="password" id="passwordOperator" data-validate-length="6,8" required='required' /></div>
-                        <td><?php echo form_error('password'); ?></td>
+                            <input class="form-control" type="password" name="password" id="passwordOperator" data-validate-length="6,8" placeholder="Masukkan password" />
+                        </div>
                     </div>
+                    <td><?php echo form_error('password'); ?></td>
+                    <div class="row form-group">
+                        <label id="labelRetypePasswordOperator" class="col-form-label col-md-2 col-sm-2">Retype Password<font color="red">*</font></label>
+                        <div class="col-md col-sm">
+                            <input class="form-control" type="password" name="retypePassword" id="retypePasswordOperator" data-validate-length="6,8" placeholder="Masukkan ulang password" />
+                        </div>
+                    </div>
+                    <td><?php echo form_error('retypePassword'); ?></td>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
@@ -151,6 +163,8 @@
         // hide form input
         $('#labelPasswordOperator').hide();
         $('#passwordOperator').hide();
+        $('#labelRetypePasswordOperator').hide();
+        $('#retypePasswordOperator').hide();
         $('#labelEmailOperator').hide();
         $('#emailOperator').hide();
 
@@ -172,6 +186,27 @@
                 $('#old_pass').val(data.password);
                 $('#passwordOperator').val(data.password);
             }
+        });
+    });
+
+    $('.activate').on('change', function() {
+        // alert($(this).data('id'));
+        // $('#activate').attr('disabled');
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url('Operator/activate') ?>',
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            beforeSend: function() {
+                $($(this).data('id')).attr('disabled');
+            },
+            // success: function() {
+            //     $($(this).data('id')).removeAttr('disabled');
+            // }
         });
     });
 </script>

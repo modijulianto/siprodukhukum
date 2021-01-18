@@ -3,12 +3,14 @@ $(function () {
 	$(".tombolTambahAdmin").on("click", function () {
 		$("#judulModal").html("Input Data Administrator");
 		$(".modal-footer button[type=submit]").html("Add Data");
-		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin/data_admin");
+		$(".modal-body form").attr("action", "http://localhost/siprohum/Admin");
 		// alert($('.modal-body form').attr('action'));
 
 		// show form input
 		$("#labelPasswordAdmin").show();
 		$("#passwordAdmin").show();
+		$("#labelRetypePasswordAdmin").show();
+		$("#retypePasswordAdmin").show();
 		$("#labelEmailAdmin").show();
 		$("#emailAdmin").show();
 
@@ -29,6 +31,8 @@ $(function () {
 		// show form input
 		$("#labelPasswordOperator").show();
 		$("#passwordOperator").show();
+		$("#labelRetypePasswordOperator").show();
+		$("#retypePasswordOperator").show();
 		$("#labelEmailOperator").show();
 		$("#emailOperator").show();
 

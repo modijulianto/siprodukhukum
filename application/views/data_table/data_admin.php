@@ -88,7 +88,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('Admin/data_admin') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= site_url('Admin') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Name<font color="red">*</font></label>
@@ -116,9 +116,17 @@
                     <div class="row form-group">
                         <label id="labelPasswordAdmin" class="col-form-label col-md-2 col-sm-2">Password<font color="red">*</font></label>
                         <div class="col-md col-sm">
-                            <input class="form-control" type="password" name="password" id="passwordAdmin" data-validate-length="6,8" required='required' /></div>
-                        <td><?php echo form_error('password'); ?></td>
+                            <input class="form-control" type="password" name="password" id="passwordAdmin" data-validate-length="6,8" placeholder="Masukkan password" />
+                        </div>
                     </div>
+                    <?php echo form_error('password'); ?>
+                    <div class="row form-group">
+                        <label id="labelRetypePasswordAdmin" class="col-form-label col-md-2 col-sm-2">Retype Password<font color="red">*</font></label>
+                        <div class="col-md col-sm">
+                            <input class="form-control" type="password" name="retypePassword" id="retypePasswordAdmin" data-validate-length="6,8" placeholder="Masukkan ulang password" />
+                        </div>
+                    </div>
+                    <?php echo form_error('retypePassword'); ?>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
@@ -140,6 +148,8 @@
         // hide form input
         $('#labelPasswordAdmin').hide();
         $('#passwordAdmin').hide();
+        $('#labelRetypePasswordAdmin').hide();
+        $('#retypePasswordAdmin').hide();
         $('#labelEmailAdmin').hide();
         $('#emailAdmin').hide();
 

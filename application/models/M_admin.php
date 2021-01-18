@@ -361,10 +361,6 @@ class M_admin extends CI_Model
     ///////////////////////////////////// JENIS PRODUK /////////////////////////////////////
     public function get_jenis()
     {
-        // Menampilkan data jenis produk dengan id_unit 1 dan jenis produk yang sesuai dengan unit yang membuatnya 
-        $this->db->where('id_unit', 1);
-        $this->db->or_where('id_unit', $this->session->userdata('id_unit'));
-
         $this->db->order_by('id_jenis', 'DESC');
         return $this->db->get('tb_jenis_produk')->result_array();
     }
@@ -379,7 +375,6 @@ class M_admin extends CI_Model
 
     public function save_jenis()
     {
-        $this->db->set('id_unit', $this->session->userdata('id_unit'));
         $this->db->set('nama_jenis', $_POST['jenis']);
         $this->db->insert('tb_jenis_produk');
     }
@@ -395,10 +390,6 @@ class M_admin extends CI_Model
     ///////////////////////////////////// KATEGORI /////////////////////////////////////
     public function get_kategori()
     {
-        // Menampilkan data kategori dengan id_unit 1 dan kategori yang sesuai dengan unit yang membuatnya 
-        // $this->db->where('tb_kategori.id_unit', 1);
-        $this->db->or_where('tb_kategori.id_unit', $this->session->userdata('id_unit'));
-
         $this->db->join('tb_jenis_produk', 'tb_jenis_produk.id_jenis=tb_kategori.id_jenis');
         $this->db->order_by('id_kategori', 'DESC');
         return $this->db->get('tb_kategori')->result_array();
