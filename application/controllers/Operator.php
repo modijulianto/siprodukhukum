@@ -45,13 +45,17 @@ class Operator extends CI_Controller
 
         if ($is_active == 1) {
             $this->db->set('is_active', 0);
+            $msg = ['nonaktif' => "Dinonaktifkan."];
         } else {
             $this->db->set('is_active', 1);
+            $msg = ['aktif' => "Diaktifkan."];
         }
 
 
         $this->db->where('id', $_POST['id']);
         $this->db->update('tb_user');
+
+        echo json_encode($msg);
     }
 
     public function update_operator()

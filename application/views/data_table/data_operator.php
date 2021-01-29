@@ -192,6 +192,7 @@
     $('.activate').on('change', function() {
         // alert($(this).data('id'));
         // $('#activate').attr('disabled');
+
         const id = $(this).data('id');
 
         $.ajax({
@@ -204,9 +205,24 @@
             beforeSend: function() {
                 $($(this).data('id')).attr('disabled');
             },
-            // success: function() {
-            //     $($(this).data('id')).removeAttr('disabled');
-            // }
+            success: function(response) {
+                $($(this).data('id')).removeAttr('disabled');
+                if (response.aktif) {
+                    new PNotify({
+                        title: "Diaktifkan",
+                        text: "Akun operator berhasil diaktifkan",
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                } else {
+                    new PNotify({
+                        title: "Dinonaktifkan",
+                        text: "Akun operator berhasil dinonaktifkan",
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                }
+            }
         });
     });
 </script>

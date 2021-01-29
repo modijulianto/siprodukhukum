@@ -40,6 +40,10 @@
     <link href="<?= base_url("assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css") ?>" rel="stylesheet" />
     <!-- Switchery -->
     <link href="<?= base_url("assets/vendors/switchery/dist/switchery.min.css"); ?>" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="<?= base_url("assets/vendors/pnotify/dist/pnotify.css") ?>" rel="stylesheet">
+    <link href="<?= base_url("assets/vendors/pnotify/dist/pnotify.buttons.css") ?>" rel="stylesheet">
+    <link href="<?= base_url("assets/vendors/pnotify/dist/pnotify.nonblock.css") ?>" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url("assets/build/css/custom.min.css") ?>" rel="stylesheet">
