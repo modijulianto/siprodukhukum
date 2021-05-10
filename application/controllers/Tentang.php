@@ -7,7 +7,6 @@ class Tentang extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_admin');
-        $this->load->model('M_jdih');
         is_logged_in();
     }
 

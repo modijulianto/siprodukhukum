@@ -120,8 +120,10 @@
                 <form action="<?= base_url('Produk_hukum/add_tentangBaru'); ?>" id="form-tentangBaru" method="POST" class="form-tentang form-tentangBaru">
                     <div class="row form-group">
                         <label class="col-form-label col-md-2 col-sm-2">Tentang<font color="red">*</font></label>
+
                         <div class="col-md col-sm">
                             <!-- <input type="text" class="form-control" name="jenis" id="jenis" placeholder="Masukkan nama jenis" required="required" value="<?= set_value('nama'); ?>" /> -->
+                            <select class="form-control" name="tentang" id="tentang" required></select>
                             <textarea name="tentangBaru" id="tentangBaru" placeholder="Masukkan Tentang" style="width: 100%;" rows="5"></textarea>
                             <div class="invalid-feedback errorTentang">
                             </div>

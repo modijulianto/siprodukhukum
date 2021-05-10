@@ -36,7 +36,6 @@ class M_admin extends CI_Model
 
     public function get_produkHukumBlmTervalidasi()
     {
-        // Menampilkan data produk hukum yang sesuai dengan unit yang membuatnya 
         $this->db->where('validasi', 0);
 
         // Jika yang login bukan admin, maka hanya get data dari unit nya saja
@@ -427,9 +426,7 @@ class M_admin extends CI_Model
     ///////////////////////////////////// TENTANG /////////////////////////////////////
     public function get_tentang()
     {
-        // Menampilkan tentang sesuai dengan unitnya dan data tentang dengan id_unit 1
-        // $this->db->where('id_unit', 1);
-        $this->db->or_where('id_unit', $this->session->userdata('id_unit'));
+        $this->db->where('id_unit', $this->session->userdata('id_unit'));
 
         $this->db->order_by('id_tentang', 'DESC');
         return $this->db->get('tb_tentang')->result_array();

@@ -77,8 +77,8 @@ class M_jdih extends CI_Model
 
     public function getKatProhumByIdUnit($id)
     {
-        $this->db->where('id_unit', 1);
-        $this->db->or_where('md5(id_unit)', $id);
+        // $this->db->where('id_unit', 1);
+        // $this->db->or_where('md5(id_unit)', $id);
         return $this->db->get('tb_kategori')->result_array();
     }
 

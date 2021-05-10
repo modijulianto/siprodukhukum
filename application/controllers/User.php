@@ -54,8 +54,6 @@ class User extends CI_Controller
 
             // cek jika ada gambar yang akan diupdate
             $upload_image = $_FILES['foto']['name'];
-            // var_dump($upload_image);
-            // die;
 
             if ($upload_image) {
                 $config['allowed_types'] = 'JPG|JPEG|jpg|jpeg|png|gif|ico';
